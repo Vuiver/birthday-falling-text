@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>🎉 Chúc Mừng Sinh Nhật - 3D Falling Wishes 🎂</title>
-  <meta name="description" content="Cơn mưa lời chúc sinh nhật 3D lung linh, âm nhạc và quà cáp rơi tự do độc đáo.">
+  <title>🎉 Chúc Mừng Sinh Nhật - 100 Lời Chúc 3D Thác Nước 🎂</title>
+  <meta name="description" content="Thác nước 100 lời chúc sinh nhật 3D rơi liên tục không ngừng, quà cáp, bánh kem và âm nhạc rộn ràng.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700;800;900&family=Mali:wght@600;700&display=swap" rel="stylesheet">
@@ -56,7 +56,7 @@
       position: absolute;
       border-radius: 50%;
       filter: blur(50px);
-      opacity: 0.35;
+      opacity: 0.38;
       pointer-events: none;
       z-index: 0;
       animation: floatOrb 10s infinite alternate ease-in-out;
@@ -79,7 +79,7 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: 14px 16px;
+      padding: 12px 16px;
     }
 
     /* Header Bar */
@@ -162,30 +162,23 @@
       50% { box-shadow: 0 0 0 10px rgba(255, 117, 140, 0); }
     }
 
-    /* Hint Pill */
+    /* Live Counter Pill */
     .hint-pill {
       align-self: center;
-      margin-top: 8px;
+      margin-top: 6px;
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      background: rgba(0, 0, 0, 0.45);
-      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.18);
       border-radius: 20px;
-      padding: 6px 14px;
+      padding: 5px 14px;
       font-size: 0.78rem;
-      color: rgba(255, 255, 255, 0.85);
+      color: #ffd166;
       display: flex;
       align-items: center;
       gap: 6px;
       pointer-events: none;
-      animation: fadeInOut 6s forwards;
-    }
-
-    @keyframes fadeInOut {
-      0% { opacity: 0; transform: translateY(-10px); }
-      15% { opacity: 1; transform: translateY(0); }
-      80% { opacity: 1; }
-      100% { opacity: 0; pointer-events: none; }
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     }
 
     /* Bottom Actions */
@@ -202,9 +195,9 @@
       display: flex;
       align-items: center;
       gap: 6px;
-      padding: 11px 20px;
+      padding: 10px 18px;
       border-radius: 30px;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       font-weight: 700;
       cursor: pointer;
       transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -244,7 +237,7 @@
     /* Sound Banner */
     .sound-banner {
       position: absolute;
-      bottom: 74px;
+      bottom: 70px;
       left: 50%;
       transform: translateX(-50%);
       background: rgba(255, 65, 108, 0.9);
@@ -369,8 +362,8 @@
         font-size: 0.92rem;
       }
       .action-btn {
-        padding: 9px 15px;
-        font-size: 0.82rem;
+        padding: 8px 14px;
+        font-size: 0.8rem;
       }
     }
   </style>
@@ -395,7 +388,7 @@
     <header class="header-bar">
       <div class="title-group">
         <h1>🎂 Happy Birthday</h1>
-        <span class="title-badge">3D Waterfall</span>
+        <span class="title-badge">100 Lời Chúc 3D</span>
       </div>
       <div class="header-actions">
         <button class="icon-btn" id="theme-btn" title="Đổi màu nền">🎨</button>
@@ -404,9 +397,9 @@
       </div>
     </header>
 
-    <!-- Hint Pill -->
+    <!-- Live Counter Pill -->
     <div class="hint-pill">
-      <span>✨</span> Vuốt xoay 360° & Chạm vào lời chúc để bắn pháo hoa!
+      <span>✨</span> Thác nước 100 Lời Chúc đang rơi liên tục • Vuốt để xoay 360°
     </div>
 
     <!-- Tap anywhere for music prompt -->
@@ -416,8 +409,11 @@
 
     <!-- Bottom Actions -->
     <footer class="bottom-bar">
-      <button class="action-btn btn-primary" id="add-btn">
-        <span>✨</span> Thêm Cơn Mưa Quà
+      <button class="action-btn btn-primary" id="speed-btn">
+        <span>⚡</span> Tăng Tốc Rơi
+      </button>
+      <button class="action-btn btn-secondary" id="add-btn">
+        <span>🎁</span> Thêm Quà Cáp
       </button>
       <button class="action-btn btn-secondary" id="confetti-btn">
         <span>🎉</span> Bắn Pháo Hoa
@@ -430,7 +426,7 @@
     <div class="qr-card">
       <button class="qr-close-btn" id="qr-close">&times;</button>
       <h3 style="font-size: 1.25rem; margin-bottom: 6px; font-weight: 800;">📱 Quét Mã QR</h3>
-      <p style="font-size: 0.82rem; color: rgba(255,255,255,0.7);">Mở camera quét mã để trải nghiệm vuốt xoay 3D trên điện thoại!</p>
+      <p style="font-size: 0.82rem; color: rgba(255,255,255,0.7);">Mở camera quét mã để trải nghiệm thác nước lời chúc trên điện thoại!</p>
       <div id="qrcode-box"></div>
       <input type="text" class="share-link-input" id="share-link-input" readonly>
       <button class="copy-btn" id="copy-link-btn">📋 Sao Chép Link</button>
@@ -439,26 +435,136 @@
 
   <script>
     /* =========================================================================
-       1. DATA & PALETTES
+       1. 100 LỜI CHÚC SINH NHẬT ĐỘC ĐÁO & PHỐI MÀU GRADIENT ĐA DẠNG
        ========================================================================= */
-    const WISHES = [
-      { text: "🎂 HAPPY BIRTHDAY 🎂", bg: ["#ff416c", "#ff4b2b"], size: "large" },
-      { text: "Chúc Mừng Sinh Nhật Sếp! 👑", bg: ["#f7971e", "#ffd200"], size: "large" },
-      { text: "Tuổi Mới Rực Rỡ ✨", bg: ["#ff758c", "#ff7eb3"], size: "medium" },
-      { text: "Luôn Vui Vẻ & Hạnh Phúc 🥰", bg: ["#b224ef", "#7579ff"], size: "medium" },
-      { text: "Tiền Vào Như Nước 💰", bg: ["#11998e", "#38ef7d"], size: "medium" },
-      { text: "Thành Công Bứt Phá 🚀", bg: ["#8a2387", "#e94057"], size: "medium" },
-      { text: "Mãi Đỉnh - Mãi Đẹp Trai 😎", bg: ["#f12711", "#f5af19"], size: "medium" },
-      { text: "Vạn Sự Như Ý 🍀", bg: ["#00c6ff", "#0072ff"], size: "medium" },
-      { text: "Sức Khỏe Vô Biên 💪", bg: ["#0ba360", "#3cba92"], size: "medium" },
-      { text: "Ước Gì Được Nấy 🌟", bg: ["#ff0844", "#ffb199"], size: "medium" },
-      { text: "Trẻ Mãi Không Già 🌸", bg: ["#f857a6", "#ff5858"], size: "medium" },
-      { text: "Gia Đình Bình An ❤️", bg: ["#654ea3", "#eaafc8"], size: "medium" },
-      { text: "Mỗi Ngày Một Niềm Vui 🌈", bg: ["#fa709a", "#fee140"], size: "medium" },
-      { text: "May Mắn Tràn Đầy 🥂", bg: ["#4facfe", "#00f2fe"], size: "small" },
-      { text: "Chúc Anh Vững Vàng 💎", bg: ["#36d1dc", "#5b86e5"], size: "medium" },
-      { text: "You Are The Best! 🌟", bg: ["#ff758c", "#ff7eb3"], size: "small" }
+    const PALETTES = [
+      ["#ff416c", "#ff4b2b"], // Đỏ cam tiệc tùng
+      ["#f7971e", "#ffd200"], // Vàng hoàng kim
+      ["#ff758c", "#ff7eb3"], // Hồng phấn ngọt ngào
+      ["#b224ef", "#7579ff"], // Tím neon huyền bí
+      ["#11998e", "#38ef7d"], // Xanh ngọc may mắn
+      ["#00c6ff", "#0072ff"], // Xanh biển hy vọng
+      ["#8a2387", "#e94057"], // Tím đỏ hoàng hôn
+      ["#f12711", "#f5af19"], // Cam hổ phách
+      ["#654ea3", "#eaafc8"], // Tím lilac mộng mơ
+      ["#4facfe", "#00f2fe"], // Xanh mint băng tuyết
+      ["#fa709a", "#fee140"], // Hồng đào nắng sớm
+      ["#0ba360", "#3cba92"], // Xanh lục tài lộc
+      ["#f857a6", "#ff5858"], // Đỏ cherry ngọt ngào
+      ["#36d1dc", "#5b86e5"], // Lam ngọc bích
+      ["#e52d27", "#b31217"]  // Đỏ nhung quyền lực
     ];
+
+    const WISH_TEXTS = [
+      "🎂 HAPPY BIRTHDAY 🎂",
+      "Chúc Mừng Sinh Nhật Sếp! 👑",
+      "Tuổi Mới Rực Rỡ & Thăng Hoa ✨",
+      "Tiền Vào Như Nước Sông Đà 💰",
+      "Tiền Ra Nhỏ Giọt Như Cà Phê Phin ☕",
+      "Thành Công Bứt Phá Mọi Giới Hạn 🚀",
+      "Vạn Sự Như Ý - Tỷ Sự Như Mơ 🍀",
+      "Công Việc Thuận Buồm Xuôi Gió ⛵",
+      "Ký Hợp Đồng Mỏi Tay 📝",
+      "Khách Hàng Nườm Nượp Tấp Nập 🌟",
+      "Doanh Thu Đột Phá X10 📈",
+      "Sếp Mãi Đỉnh - Đỉnh Của Chóp 🏔️",
+      "Mọi Kế Hoạch Đều Thắng Lớn 🎯",
+      "Lãnh Đạo Xuất Sắc & Tầm Vóc 💼",
+      "Sự Nghiệp Lên Như Diều Gặp Gió 🪁",
+      "Một Năm Đầy Ắp Cơ Hội Vàng 🏆",
+      "Bản Lĩnh Vững Vàng Trước Mọi Sóng Gió 🌊",
+      "Đạt Mọi Mục Tiêu Đã Đề Ra 🎯",
+      "Ý Tưởng Luôn Đột Phá Sáng Tạo 💡",
+      "Tài Lộc Dồi Dào Quanh Năm 💎",
+      "Sức Khỏe Vô Biên - Tinh Thần Thép 💪",
+      "Trẻ Khỏe Năng Động Mỗi Ngày 🏃‍♂️",
+      "Ngủ Đủ Giấc - Ăn Cực Ngon 🍲",
+      "Tâm Hồn Luôn Thanh Thản An Nhiên 🍃",
+      "Nụ Cười Luôn Nở Trên Môi 😄",
+      "Luôn Tràn Đầy Năng Lượng Tích Cực ⚡",
+      "Mỗi Sáng Thức Dậy Là Một Niềm Vui ☀️",
+      "Trẻ Mãi Không Già - Đẹp Trai Bất Chấp 😎",
+      "Cơ Thể Dẻo Dai - Bền Bỉ Hơn Mỗi Ngày 🏋️",
+      "Không Bao Giờ Lo Lắng Suy Nghĩ 🌿",
+      "Bình An Trong Từng Giây Phút 🕊️",
+      "Cuộc Sống An Lạc & Hạnh Phúc 🌸",
+      "Ánh Mắt Luôn Rạng Rỡ Niềm Tin ✨",
+      "Thể Thao Khỏe Khoắn Tràn Trề Nhựa Sống 🚴",
+      "Trái Tim Luôn Tràn Ngập Tình Yêu ❤️",
+      "Gia Đình Ấm Êm Hạnh Phúc Viên Mãn 👨‍👩‍👧‍👦",
+      "Tình Yêu Thăng Hoa Ngọt Ngào 💖",
+      "Có Những Người Bạn Tri Kỷ Sát Cánh 🤝",
+      "Tổ Ấm Luôn Tràn Ngập Tiếng Cười 🏡",
+      "Luôn Được Yêu Thương Và Trân Trọng 🥰",
+      "Mỗi Khoảnh Khắc Đều Đáng Nhớ 📸",
+      "Gặp Được Những Mối Duyên Lành 🌺",
+      "Anh Em Đồng Đội Đồng Lòng 👥",
+      "Hậu Phương Luôn Vững Chắc 🛡️",
+      "Hạnh Phúc Giản Đơn Nhưng Bền Lâu 🎈",
+      "Đi Đâu Cũng Gặp Quý Nhân Phù Trợ 🌟",
+      "May Mắn Tràn Ngập Từng Bước Chân 👣",
+      "Ước Gì Được Nấy - Cầu Được Ước Thấy 🎁",
+      "Shopping Không Cần Nhìn Giá 🛍️",
+      "Du Lịch Khắp Năm Châu Bốn Bể ✈️",
+      "Ăn Chơi Hết Mình - Làm Hết Sức 🥂",
+      "Check-in Những Nơi Đẹp Nhất Thế Giới 🏝️",
+      "Xe Sang - Nhà Đẹp - Đời Nở Hoa 🚗",
+      "Gu Thời Trang Mãi Đỉnh 👔",
+      "Phong Độ Là Nhất Thời - Đẳng Cấp Là Mãi Mãi 👑",
+      "Ví Luôn Dày Cộm Tiền Mặt & Thẻ 💳",
+      "Số Đỏ Quanh Năm - Vận May Gõ Cửa 🎰",
+      "Cuộc Đời Là Những Chuyến Đi Thú Vị 🗺️",
+      "Tự Do Tài Chính - Thảnh Thơi Hưởng Thụ 🍹",
+      "Mỗi Ngày Là Một Bữa Tiệc Rực Rỡ 🎉",
+      "Tuổi Mới Bớt Cọc - Thêm Giàu 😆",
+      "Ăn Nhiều Vẫn Đẹp Dáng Thon Gọn 🍰",
+      "Tóc Mọc Dày Dặn - Không Sợ Hói 💇",
+      "Xinh Đẹp / Đẹp Trai Vượt Thời Gian 🌹",
+      "Deadline Tự Biến Mất - Task Tự Xong 🪄",
+      "Bug Tự Hết - Code Chạy Ngon Lành 💻",
+      "Sếp Chỉ Cần Chỉ Tay Năm Ngón ☝️",
+      "Uống Rượu Bia Không Say - Luôn Tỉnh Táo 🍻",
+      "Tài Khoản Ting Ting Liên Hồi 📲",
+      "Luôn Là Ngôi Sao Sáng Nhất Buổi Tiệc 🌠",
+      "Giao Diện Đẹp - Hệ Điều Hành Tốt 🤖",
+      "Luôn Là Nguồn Cảm Hứng Cho Mọi Người 🌈",
+      "Xung Quanh Toàn Là Trai Xinh Gái Đẹp 👫",
+      "Ngồi Không Tiền Cũng Rơi Trúng Đầu 💸",
+      "Ai Gặp Cũng Phải Mến Thương 💖",
+      "Chúc Tuổi Mới Luôn Là Phiên Bản Tốt Nhất 🌟",
+      "Tự Tin Chinh Phục Mọi Đỉnh Cao Mới 🧗",
+      "Không Ngại Gian Nan - Không Chùn Bước 🦁",
+      "Tỏa Sáng Rực Rỡ Theo Phong Cách Riêng 💫",
+      "Vượt Qua Mọi Thách Thức Thần Kỳ ⚡",
+      "Mỗi Năm Qua Đi Lại Thêm Từng Trải & Uy Quyền 👑",
+      "Mở Ra Những Chân Trời Mới Lạ 🔭",
+      "Đón Nhận Cơn Mưa Tài Lộc & May Mắn 🌧️",
+      "Tương Lai Rạng Ngời Đang Chờ Đón 🌅",
+      "Hôm Nay Bạn Là Nhân Vật Chính 🎉",
+      "Chúc Cho Mọi Ước Nguyện Đều Thành Hiện Thực 🕯️",
+      "Sinh Nhật Đáng Nhớ Nhất Từ Trước Tới Nay 🥳",
+      "Happy Birthday To An Amazing Soul 🎂",
+      "May All Your Dreams Come True ✨",
+      "Cheers To Another Year Of Greatness 🥂",
+      "Always Keep That Charming Smile 😊",
+      "Forever Young - Forever Passionate 🔥",
+      "May Success Follow You Everywhere 🚀",
+      "You Deserve All The Best In The World 🌍",
+      "Best Wishes On Your Special Day 🎁",
+      "Chúc Mừng Ngày Bạn Đến Với Thế Giới Này 👼",
+      "Một Ngày Thật Nhiều Bánh Và Hoa 💐",
+      "Tuổi Mới - Vận Hội Mới - Thắng Lợi Mới 🏆",
+      "Mãi Mãi Là Niềm Tự Hào Của Mọi Người 🎖️",
+      "Happy Birthday - Vạn Dặm Bình An! 🌈"
+    ];
+
+    // Build 100 wishes dataset
+    const ALL_100_WISHES = WISH_TEXTS.map((text, idx) => ({
+      id: idx + 1,
+      text: text,
+      bg: PALETTES[idx % PALETTES.length],
+      size: text.length > 25 ? 'large' : (text.length < 15 ? 'small' : 'medium')
+    }));
 
     const THEMES = [
       { name: "Dark Velvet", bg: "radial-gradient(circle at 50% 30%, #2a0f47 0%, #130722 55%, #07020d 100%)" },
@@ -469,7 +575,7 @@
     let currentThemeIdx = 0;
 
     /* =========================================================================
-       2. AUDIO CONTROLLER (MP3 Birthday Song + Web Audio Pop FX)
+       2. AUDIO CONTROLLER
        ========================================================================= */
     const bgMusic = document.getElementById('bg-music');
     const audioBtn = document.getElementById('audio-btn');
@@ -495,8 +601,8 @@
         const g = audioCtx.createGain();
         osc.type = 'sine';
         const now = audioCtx.currentTime;
-        osc.frequency.setValueAtTime(540, now);
-        osc.frequency.exponentialRampToValueAtTime(200, now + 0.08);
+        osc.frequency.setValueAtTime(560, now);
+        osc.frequency.exponentialRampToValueAtTime(220, now + 0.08);
         g.gain.setValueAtTime(0.09, now);
         g.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
         osc.connect(g);
@@ -563,22 +669,21 @@
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 200);
-    camera.position.set(0, 0, 32);
+    camera.position.set(0, 0, 36);
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setSize(width, height);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     container.appendChild(renderer.domElement);
 
-    // OrbitControls for 360-degree viewing
     const controls = new THREE.OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
     controls.dampingFactor = 0.05;
     controls.enablePan = false;
-    controls.minDistance = 15;
-    controls.maxDistance = 55;
+    controls.minDistance = 16;
+    controls.maxDistance = 60;
     controls.autoRotate = true;
-    controls.autoRotateSpeed = 0.45;
+    controls.autoRotateSpeed = 0.4;
 
     // Lights
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.95);
@@ -589,27 +694,26 @@
     scene.add(dirLight);
 
     const pointLight1 = new THREE.PointLight(0xff758c, 2.0, 50);
-    pointLight1.position.set(-15, 10, 15);
+    pointLight1.position.set(-16, 12, 16);
     scene.add(pointLight1);
 
     const pointLight2 = new THREE.PointLight(0xffd166, 2.0, 50);
-    pointLight2.position.set(15, -10, 15);
+    pointLight2.position.set(16, -12, 16);
     scene.add(pointLight2);
 
     /* =========================================================================
        4. FAIRY DUST / STAR PARTICLES (BACKGROUND)
        ========================================================================= */
-    const particleCount = 200;
+    const particleCount = 260;
     const particleGeo = new THREE.BufferGeometry();
     const particlePos = new Float32Array(particleCount * 3);
     const particleColors = new Float32Array(particleCount * 3);
 
     for (let i = 0; i < particleCount; i++) {
-      particlePos[i * 3] = (Math.random() - 0.5) * 50;
-      particlePos[i * 3 + 1] = (Math.random() - 0.5) * 60;
-      particlePos[i * 3 + 2] = (Math.random() - 0.5) * 40;
+      particlePos[i * 3] = (Math.random() - 0.5) * 60;
+      particlePos[i * 3 + 1] = (Math.random() - 0.5) * 70;
+      particlePos[i * 3 + 2] = (Math.random() - 0.5) * 45;
 
-      // Gold & Pink colors
       if (Math.random() > 0.5) {
         particleColors[i * 3] = 1.0; particleColors[i * 3 + 1] = 0.82; particleColors[i * 3 + 2] = 0.4;
       } else {
@@ -621,21 +725,27 @@
     particleGeo.setAttribute('color', new THREE.BufferAttribute(particleColors, 3));
 
     const particleMat = new THREE.PointsMaterial({
-      size: 0.6,
+      size: 0.65,
       vertexColors: true,
       transparent: true,
-      opacity: 0.8
+      opacity: 0.85
     });
 
     const particles = new THREE.Points(particleGeo, particleMat);
     scene.add(particles);
 
     /* =========================================================================
-       5. 3D TEXT & GIFT GENERATORS (WATERFALL SYSTEM)
+       5. 3D TEXTURE & MESH GENERATORS
        ========================================================================= */
-    const fallingItems = []; // List of animated items
+    const textureCache = new Map();
 
-    function createPillTexture(text, colors, w = 600, h = 180) {
+    function getPillTexture(wish) {
+      if (textureCache.has(wish.text)) {
+        return textureCache.get(wish.text);
+      }
+
+      const w = 620;
+      const h = 180;
       const canvas = document.createElement('canvas');
       canvas.width = w;
       canvas.height = h;
@@ -644,8 +754,8 @@
 
       // Gradient
       const grad = ctx.createLinearGradient(0, 0, w, h);
-      grad.addColorStop(0, colors[0]);
-      grad.addColorStop(1, colors[1]);
+      grad.addColorStop(0, wish.bg[0]);
+      grad.addColorStop(1, wish.bg[1]);
 
       ctx.beginPath();
       ctx.moveTo(r, 0);
@@ -662,7 +772,7 @@
       ctx.fillStyle = grad;
       ctx.fill();
 
-      // Rim
+      // Rim 3D
       ctx.lineWidth = 7;
       ctx.strokeStyle = 'rgba(255, 255, 255, 0.45)';
       ctx.stroke();
@@ -677,41 +787,47 @@
       ctx.fillRect(0, 0, w, h * 0.45);
       ctx.restore();
 
-      // Text
+      // Dynamic Font Size based on text length
+      const len = wish.text.length;
+      let fontSize = 37;
+      if (len > 35) fontSize = 28;
+      else if (len > 25) fontSize = 32;
+
       ctx.fillStyle = '#ffffff';
-      ctx.font = '900 37px "Be Vietnam Pro", sans-serif';
+      ctx.font = `900 ${fontSize}px "Be Vietnam Pro", sans-serif`;
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      ctx.shadowColor = 'rgba(0, 0, 0, 0.35)';
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.38)';
       ctx.shadowBlur = 10;
       ctx.shadowOffsetY = 4;
-      ctx.fillText(text, w / 2, h / 2);
+      ctx.fillText(wish.text, w / 2, h / 2);
 
       const texture = new THREE.CanvasTexture(canvas);
       texture.generateMipmaps = true;
       texture.minFilter = THREE.LinearMipmapLinearFilter;
+      textureCache.set(wish.text, texture);
       return texture;
     }
 
-    function createPillMesh(wish, startX, startY, startZ, speed) {
-      let widthRatio = 4.2;
+    // Geometries reuse pool
+    function createPillGeometry(wish) {
+      let widthRatio = 4.4;
       let heightRatio = 1.45;
       if (wish.size === 'large') {
-        widthRatio = 5.2;
-        heightRatio = 1.6;
+        widthRatio = 5.4;
+        heightRatio = 1.55;
       } else if (wish.size === 'small') {
-        widthRatio = 3.3;
+        widthRatio = 3.4;
         heightRatio = 1.35;
       }
 
       const depth = 0.5;
       const radius = heightRatio / 2;
-
-      const shape = new THREE.Shape();
       const hw = widthRatio / 2;
       const hh = heightRatio / 2;
       const r = hh;
 
+      const shape = new THREE.Shape();
       shape.moveTo(-hw + r, -hh);
       shape.lineTo(hw - r, -hh);
       shape.absarc(hw - r, 0, r, -Math.PI / 2, Math.PI / 2, false);
@@ -721,7 +837,7 @@
       const extrudeSettings = {
         depth: depth,
         bevelEnabled: true,
-        bevelSegments: 3,
+        bevelSegments: 2,
         steps: 1,
         bevelSize: 0.08,
         bevelThickness: 0.08
@@ -729,8 +845,15 @@
 
       const geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings);
       geometry.center();
+      return geometry;
+    }
 
-      const texture = createPillTexture(wish.text, wish.bg, 600, 180);
+    const fallingItems = [];
+    let speedMultiplier = 1.0;
+
+    function createPillMesh(wish, startX, startY, startZ, speed) {
+      const geometry = createPillGeometry(wish);
+      const texture = getPillTexture(wish);
 
       const sideMat = new THREE.MeshStandardMaterial({
         color: new THREE.Color(wish.bg[0]),
@@ -746,17 +869,17 @@
 
       const mesh = new THREE.Mesh(geometry, [faceMat, sideMat]);
       mesh.position.set(startX, startY, startZ);
-
       scene.add(mesh);
 
       const item = {
         mesh,
-        speed: speed,
+        wish,
+        baseSpeed: speed,
         rotSpeedX: (Math.random() - 0.5) * 0.015,
         rotSpeedY: (Math.random() - 0.5) * 0.02,
         rotSpeedZ: (Math.random() - 0.5) * 0.01,
-        initialY: 28,
-        resetY: -26,
+        initialY: 34,
+        resetY: -32,
         type: 'pill'
       };
       fallingItems.push(item);
@@ -767,7 +890,7 @@
     function createGiftMesh(startX, startY, startZ, speed) {
       const size = 1.6;
       const geometry = new THREE.BoxGeometry(size, size, size);
-      const colors = [0xff416c, 0xb224ef, 0x11998e, 0xf7971e];
+      const colors = [0xff416c, 0xb224ef, 0x11998e, 0xf7971e, 0xff758c];
       const boxColor = colors[Math.floor(Math.random() * colors.length)];
 
       const boxMat = new THREE.MeshStandardMaterial({ color: boxColor, roughness: 0.25, metalness: 0.1 });
@@ -784,12 +907,12 @@
 
       const item = {
         mesh,
-        speed: speed,
+        baseSpeed: speed,
         rotSpeedX: (Math.random() - 0.5) * 0.03,
         rotSpeedY: (Math.random() - 0.5) * 0.03,
         rotSpeedZ: (Math.random() - 0.5) * 0.03,
-        initialY: 28,
-        resetY: -26,
+        initialY: 34,
+        resetY: -32,
         type: 'gift'
       };
       fallingItems.push(item);
@@ -829,12 +952,12 @@
 
       const item = {
         mesh: group,
-        speed: speed,
+        baseSpeed: speed,
         rotSpeedX: 0,
         rotSpeedY: 0.015,
         rotSpeedZ: 0,
-        initialY: 28,
-        resetY: -26,
+        initialY: 34,
+        resetY: -32,
         type: 'cake'
       };
       fallingItems.push(item);
@@ -842,46 +965,55 @@
     }
 
     /* =========================================================================
-       6. POPULATE THE FALLING WATERFALL STREAM
+       6. KHỞI TẠO THÁC NƯỚC 100 LỜI CHÚC DÀY ĐẶC & RƠI LIÊN TỤC
        ========================================================================= */
-    function initWaterfall() {
-      const totalWishes = 24;
-      const isMobile = window.innerWidth < 600;
-      const spreadX = isMobile ? 12 : 24;
-      const spreadZ = isMobile ? 14 : 20;
+    let nextWishIndex = 0;
 
-      for (let i = 0; i < totalWishes; i++) {
-        const wish = WISHES[i % WISHES.length];
+    function getNextWish() {
+      const wish = ALL_100_WISHES[nextWishIndex % ALL_100_WISHES.length];
+      nextWishIndex++;
+      return wish;
+    }
+
+    function initThickWaterfall() {
+      // Create initial thick shower of 55 active items
+      const initialCount = 55;
+      const isMobile = window.innerWidth < 600;
+      const spreadX = isMobile ? 14 : 28;
+      const spreadZ = isMobile ? 16 : 24;
+
+      for (let i = 0; i < initialCount; i++) {
+        const wish = getNextWish();
         const x = (Math.random() - 0.5) * spreadX;
-        const y = -20 + Math.random() * 50; // Staggered heights
+        const y = -28 + (i / initialCount) * 62; // Evenly distributed from bottom to top
         const z = (Math.random() - 0.5) * spreadZ;
-        const speed = 0.05 + Math.random() * 0.06;
+        const speed = 0.06 + Math.random() * 0.07;
 
         createPillMesh(wish, x, y, z, speed);
 
         // Mix in gifts and cakes
-        if (i % 5 === 0) {
+        if (i % 6 === 0) {
           createGiftMesh(
             (Math.random() - 0.5) * spreadX,
-            -20 + Math.random() * 50,
+            -28 + Math.random() * 62,
             (Math.random() - 0.5) * spreadZ,
-            0.05 + Math.random() * 0.05
+            0.06 + Math.random() * 0.05
           );
         }
-        if (i % 10 === 0) {
+        if (i % 12 === 0) {
           createCakeMesh(
             (Math.random() - 0.5) * spreadX,
-            -20 + Math.random() * 50,
+            -28 + Math.random() * 62,
             (Math.random() - 0.5) * spreadZ,
-            0.04 + Math.random() * 0.04
+            0.05 + Math.random() * 0.04
           );
         }
       }
     }
-    initWaterfall();
+    initThickWaterfall();
 
     /* =========================================================================
-       7. RAYCASTER CLICK / TAP INTERACTION
+       7. CLICK / TOUCH INTERACTION & CONFETTI
        ========================================================================= */
     const raycaster = new THREE.Raycaster();
     const mouse = new THREE.Vector2();
@@ -913,20 +1045,19 @@
 
         const found = fallingItems.find(item => item.mesh === hitObj);
         if (found) {
-          // Bounce up & spin
-          found.mesh.position.y += 2.5;
-          found.rotSpeedY += 0.15;
+          found.mesh.position.y += 3.0;
+          found.rotSpeedY += 0.2;
           playPopSound();
           triggerConfettiAt(clientX, clientY);
         }
       }
     }
-
     window.addEventListener('pointerdown', onPointerDown);
 
     /* =========================================================================
        8. CONTROLS & MODALS
        ========================================================================= */
+    const speedBtn = document.getElementById('speed-btn');
     const addBtn = document.getElementById('add-btn');
     const confettiBtn = document.getElementById('confetti-btn');
     const themeBtn = document.getElementById('theme-btn');
@@ -948,22 +1079,38 @@
       }, 250);
     }
 
+    // Toggle Speed (Normal -> Fast -> Turbo)
+    speedBtn.addEventListener('click', () => {
+      if (speedMultiplier === 1.0) {
+        speedMultiplier = 1.8;
+        speedBtn.innerHTML = '<span>⚡⚡</span> Rơi Siêu Nhanh';
+      } else if (speedMultiplier === 1.8) {
+        speedMultiplier = 2.6;
+        speedBtn.innerHTML = '<span>🚀</span> Bão Lời Chúc';
+      } else {
+        speedMultiplier = 1.0;
+        speedBtn.innerHTML = '<span>⚡</span> Tăng Tốc Rơi';
+      }
+      playPopSound();
+    });
+
     addBtn.addEventListener('click', () => {
       const isMobile = window.innerWidth < 600;
-      const spreadX = isMobile ? 12 : 24;
-      const spreadZ = isMobile ? 14 : 20;
+      const spreadX = isMobile ? 14 : 28;
+      const spreadZ = isMobile ? 16 : 24;
 
-      for (let i = 0; i < 4; i++) {
-        const wish = WISHES[Math.floor(Math.random() * WISHES.length)];
+      for (let i = 0; i < 6; i++) {
+        const wish = getNextWish();
         createPillMesh(
           wish,
           (Math.random() - 0.5) * spreadX,
-          26 + Math.random() * 8,
+          32 + Math.random() * 8,
           (Math.random() - 0.5) * spreadZ,
-          0.06 + Math.random() * 0.06
+          0.07 + Math.random() * 0.07
         );
       }
-      createGiftMesh((Math.random() - 0.5) * spreadX, 28, (Math.random() - 0.5) * spreadZ, 0.06);
+      createGiftMesh((Math.random() - 0.5) * spreadX, 34, (Math.random() - 0.5) * spreadZ, 0.07);
+      createGiftMesh((Math.random() - 0.5) * spreadX, 36, (Math.random() - 0.5) * spreadZ, 0.07);
       triggerBigConfetti();
       playPopSound();
     });
@@ -975,7 +1122,6 @@
       document.getElementById('bg-gradient').style.background = THEMES[currentThemeIdx].bg;
     });
 
-    // QR Code
     function generateQR() {
       const url = window.location.href;
       shareLinkInput.value = url;
@@ -1009,45 +1155,55 @@
       });
     });
 
-    // Auto-try music on page load
     window.addEventListener('load', () => {
       tryPlayMusic();
       triggerBigConfetti();
     });
 
     /* =========================================================================
-       9. ANIMATION LOOP & RESIZE
+       9. CONTINUOUS WATERFALL ANIMATION LOOP (INFINITE ROTATING 100 WISHES)
        ========================================================================= */
     function animate() {
       requestAnimationFrame(animate);
 
       controls.update();
 
-      // Animate falling items (Infinite Waterfall Loop)
       const isMobile = window.innerWidth < 600;
-      const spreadX = isMobile ? 12 : 24;
-      const spreadZ = isMobile ? 14 : 20;
+      const spreadX = isMobile ? 14 : 28;
+      const spreadZ = isMobile ? 16 : 24;
 
       for (let i = 0; i < fallingItems.length; i++) {
         const item = fallingItems[i];
-        item.mesh.position.y -= item.speed;
+        item.mesh.position.y -= item.baseSpeed * speedMultiplier;
 
         item.mesh.rotation.x += item.rotSpeedX;
         item.mesh.rotation.y += item.rotSpeedY;
         item.mesh.rotation.z += item.rotSpeedZ;
 
-        // Dampen excess spin
         if (Math.abs(item.rotSpeedY) > 0.04) item.rotSpeedY *= 0.98;
 
-        // Reset to top when passing bottom threshold
+        // Reset to top when passing bottom threshold, update to NEXT wish in the 100 wishes list!
         if (item.mesh.position.y < item.resetY) {
           item.mesh.position.y = item.initialY + Math.random() * 6;
           item.mesh.position.x = (Math.random() - 0.5) * spreadX;
           item.mesh.position.z = (Math.random() - 0.5) * spreadZ;
+
+          // If it's a pill, cycle to the next wish in the 100 list!
+          if (item.type === 'pill') {
+            const nextWish = getNextWish();
+            item.wish = nextWish;
+            const newTex = getPillTexture(nextWish);
+            if (item.mesh.material && item.mesh.material[0]) {
+              item.mesh.material[0].map = newTex;
+              item.mesh.material[0].needsUpdate = true;
+            }
+            if (item.mesh.material && item.mesh.material[1]) {
+              item.mesh.material[1].color.set(nextWish.bg[0]);
+            }
+          }
         }
       }
 
-      // Rotate particle stars slowly
       particles.rotation.y += 0.0008;
 
       renderer.render(scene, camera);
