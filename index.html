@@ -42,13 +42,61 @@
       z-index: 1;
     }
 
-    /* Gradient Background Animation */
+    /* Ambient Dynamic Glow */
     .bg-gradient {
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at 50% 30%, #2a164d 0%, #170d2c 50%, #0c0617 100%);
+      background: radial-gradient(circle at 50% 30%, #2d144e 0%, #170a2c 55%, #0c0517 100%);
       z-index: 0;
-      transition: background 1s ease;
+      transition: background 0.8s ease;
+    }
+
+    /* Floating Lights Effect */
+    .bg-bubbles {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .bubble {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(40px);
+      opacity: 0.35;
+      animation: floatBubble 12s infinite alternate ease-in-out;
+    }
+
+    .bubble-1 {
+      width: 320px;
+      height: 320px;
+      background: #ff416c;
+      top: 10%;
+      left: 10%;
+    }
+
+    .bubble-2 {
+      width: 280px;
+      height: 280px;
+      background: #ffd166;
+      bottom: 20%;
+      right: 15%;
+      animation-delay: -4s;
+    }
+
+    .bubble-3 {
+      width: 240px;
+      height: 240px;
+      background: #b224ef;
+      top: 40%;
+      right: 25%;
+      animation-delay: -7s;
+    }
+
+    @keyframes floatBubble {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(40px, 60px) scale(1.15); }
     }
 
     /* UI Overlay */
@@ -60,46 +108,47 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: 16px 20px;
+      padding: 14px 16px;
     }
 
+    /* Header Bar */
     .header-bar {
       display: flex;
       justify-content: space-between;
       align-items: center;
       pointer-events: auto;
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 24px;
-      padding: 10px 18px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 28px;
+      padding: 8px 16px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
     }
 
     .title-group {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
 
     .title-group h1 {
-      font-size: 1.1rem;
-      font-weight: 800;
+      font-size: 1.05rem;
+      font-weight: 900;
       background: linear-gradient(135deg, #ffd166, #ff758c, #ff7eb3);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.3px;
     }
 
     .title-badge {
-      font-size: 0.72rem;
-      padding: 2px 8px;
-      border-radius: 12px;
-      background: rgba(255, 117, 140, 0.25);
-      color: #ff9ebb;
+      font-size: 0.7rem;
+      padding: 2px 7px;
+      border-radius: 10px;
+      background: rgba(255, 117, 140, 0.3);
+      color: #ffb3c7;
       font-weight: 700;
-      border: 1px solid rgba(255, 117, 140, 0.4);
+      border: 1px solid rgba(255, 117, 140, 0.45);
     }
 
     .header-actions {
@@ -108,175 +157,143 @@
     }
 
     .icon-btn {
-      width: 40px;
-      height: 40px;
+      width: 38px;
+      height: 38px;
       border-radius: 50%;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      background: rgba(255, 255, 255, 0.15);
       color: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
 
     .icon-btn:hover {
       transform: scale(1.12);
-      background: rgba(255, 255, 255, 0.25);
-      border-color: rgba(255, 255, 255, 0.4);
+      background: rgba(255, 255, 255, 0.28);
+      border-color: rgba(255, 255, 255, 0.45);
     }
 
     .icon-btn:active {
       transform: scale(0.92);
     }
 
-    /* Bottom Action Bar */
+    .music-pulse {
+      animation: musicPulse 1.5s infinite;
+    }
+
+    @keyframes musicPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(255, 117, 140, 0.6); }
+      50% { box-shadow: 0 0 0 8px rgba(255, 117, 140, 0); }
+    }
+
+    /* Floating Hint Pill */
+    .hint-pill {
+      align-self: center;
+      margin-top: 8px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      background: rgba(0, 0, 0, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-size: 0.78rem;
+      color: rgba(255, 255, 255, 0.85);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      pointer-events: none;
+      animation: fadeInOut 6s forwards;
+    }
+
+    @keyframes fadeInOut {
+      0% { opacity: 0; transform: translateY(-10px); }
+      15% { opacity: 1; transform: translateY(0); }
+      80% { opacity: 1; }
+      100% { opacity: 0; pointer-events: none; }
+    }
+
+    /* Bottom Actions */
     .bottom-bar {
       display: flex;
       justify-content: center;
-      gap: 12px;
+      gap: 10px;
       pointer-events: auto;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       flex-wrap: wrap;
     }
 
     .action-btn {
       display: flex;
       align-items: center;
-      gap: 8px;
-      padding: 12px 22px;
+      gap: 6px;
+      padding: 11px 20px;
       border-radius: 30px;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       font-weight: 700;
       cursor: pointer;
       transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
     }
 
     .btn-primary {
       background: linear-gradient(135deg, #ff416c, #ff4b2b);
       color: #fff;
-      box-shadow: 0 8px 25px rgba(255, 75, 43, 0.45);
+      box-shadow: 0 6px 20px rgba(255, 75, 43, 0.45);
       border: none;
     }
 
     .btn-primary:hover {
-      transform: translateY(-3px) scale(1.04);
-      box-shadow: 0 12px 30px rgba(255, 75, 43, 0.65);
+      transform: translateY(-2px) scale(1.04);
+      box-shadow: 0 10px 25px rgba(255, 75, 43, 0.6);
     }
 
     .btn-secondary {
-      background: rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.14);
       color: #fff;
       border: 1px solid rgba(255, 255, 255, 0.25);
     }
 
     .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.22);
-      transform: translateY(-3px) scale(1.04);
+      background: rgba(255, 255, 255, 0.24);
+      transform: translateY(-2px) scale(1.04);
     }
 
     .action-btn:active {
-      transform: scale(0.95);
-    }
-
-    /* Welcome / Tap to Open Modal */
-    .modal-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(10, 6, 20, 0.85);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      transition: opacity 0.5s ease, visibility 0.5s ease;
-    }
-
-    .modal-overlay.hidden {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-    }
-
-    .welcome-card {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      border-radius: 36px;
-      padding: 40px 32px;
-      max-width: 440px;
-      width: 100%;
-      text-align: center;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.3);
-      animation: floatCard 3s ease-in-out infinite alternate;
-    }
-
-    @keyframes floatCard {
-      0% { transform: translateY(0px); }
-      100% { transform: translateY(-8px); }
-    }
-
-    .gift-box-icon {
-      font-size: 5rem;
-      margin-bottom: 16px;
-      display: inline-block;
-      animation: wiggle 1.2s ease-in-out infinite;
-      filter: drop-shadow(0 15px 20px rgba(255, 75, 43, 0.4));
-    }
-
-    @keyframes wiggle {
-      0%, 100% { transform: rotate(-6deg) scale(1); }
-      50% { transform: rotate(6deg) scale(1.08); }
-    }
-
-    .welcome-card h2 {
-      font-size: 1.8rem;
-      font-weight: 900;
-      margin-bottom: 12px;
-      background: linear-gradient(135deg, #ffd166, #ff758c, #ff7eb3);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      line-height: 1.3;
-    }
-
-    .welcome-card p {
-      font-size: 0.95rem;
-      color: rgba(255, 255, 255, 0.8);
-      line-height: 1.6;
-      margin-bottom: 28px;
-    }
-
-    .btn-open-gift {
-      background: linear-gradient(135deg, #ff416c, #ff4b2b);
-      color: #fff;
-      font-size: 1.15rem;
-      font-weight: 800;
-      padding: 16px 40px;
-      border-radius: 40px;
-      border: none;
-      cursor: pointer;
-      box-shadow: 0 12px 35px rgba(255, 75, 43, 0.6);
-      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .btn-open-gift:hover {
-      transform: scale(1.08);
-      box-shadow: 0 16px 45px rgba(255, 75, 43, 0.8);
-    }
-
-    .btn-open-gift:active {
       transform: scale(0.94);
+    }
+
+    /* Tap anywhere to play sound banner (subtle, non-blocking) */
+    .sound-banner {
+      position: absolute;
+      bottom: 74px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255, 65, 108, 0.85);
+      backdrop-filter: blur(10px);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+      pointer-events: none;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      opacity: 0;
+      transform: translate(-50%, 10px);
+      z-index: 20;
+    }
+
+    .sound-banner.show {
+      opacity: 1;
+      transform: translate(-50%, 0);
     }
 
     /* QR Code Modal */
@@ -302,26 +319,26 @@
     }
 
     .qr-card {
-      background: #1e1633;
+      background: #1e1430;
       border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 30px;
-      padding: 32px 28px;
-      max-width: 360px;
+      border-radius: 28px;
+      padding: 28px 24px;
+      max-width: 350px;
       width: 100%;
       text-align: center;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
       position: relative;
     }
 
     .qr-close-btn {
       position: absolute;
-      top: 16px;
-      right: 16px;
-      width: 36px;
-      height: 36px;
+      top: 14px;
+      right: 14px;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
       border: none;
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.12);
       color: #fff;
       font-size: 1.2rem;
       cursor: pointer;
@@ -331,16 +348,16 @@
     }
 
     .qr-close-btn:hover {
-      background: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.22);
     }
 
     #qrcode-box {
       background: #fff;
-      padding: 16px;
-      border-radius: 20px;
+      padding: 14px;
+      border-radius: 18px;
       display: inline-block;
-      margin: 20px 0;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      margin: 16px 0;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
     }
 
     #qrcode-box img, #qrcode-box canvas {
@@ -350,12 +367,12 @@
 
     .share-link-input {
       width: 100%;
-      padding: 10px 14px;
-      border-radius: 14px;
+      padding: 9px 12px;
+      border-radius: 12px;
       border: 1px solid rgba(255, 255, 255, 0.2);
-      background: rgba(0, 0, 0, 0.3);
+      background: rgba(0, 0, 0, 0.35);
       color: #ff9ebb;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       text-align: center;
       margin-bottom: 12px;
       outline: none;
@@ -366,60 +383,39 @@
       color: #1a0f29;
       font-weight: 800;
       border: none;
-      padding: 10px 24px;
-      border-radius: 24px;
+      padding: 10px 20px;
+      border-radius: 20px;
       cursor: pointer;
       width: 100%;
-      font-size: 0.95rem;
-    }
-
-    /* Tip Toast */
-    .tip-toast {
-      position: absolute;
-      top: 80px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 20px;
-      padding: 8px 18px;
-      font-size: 0.82rem;
-      color: rgba(255, 255, 255, 0.85);
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.4s ease;
-      z-index: 20;
-    }
-
-    .tip-toast.show {
-      opacity: 1;
+      font-size: 0.9rem;
     }
 
     @media (max-width: 600px) {
       .header-bar {
-        padding: 8px 14px;
+        padding: 6px 12px;
       }
       .title-group h1 {
-        font-size: 0.95rem;
+        font-size: 0.92rem;
       }
       .action-btn {
-        padding: 10px 16px;
-        font-size: 0.88rem;
-      }
-      .welcome-card {
-        padding: 32px 20px;
-      }
-      .welcome-card h2 {
-        font-size: 1.5rem;
+        padding: 9px 15px;
+        font-size: 0.82rem;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Background -->
+  <!-- Audio Element -->
+  <audio id="bg-music" src="happy-birthday.mp3" loop preload="auto"></audio>
+
+  <!-- Background Lights -->
   <div class="bg-gradient" id="bg-gradient"></div>
+  <div class="bg-bubbles">
+    <div class="bubble bubble-1"></div>
+    <div class="bubble bubble-2"></div>
+    <div class="bubble bubble-3"></div>
+  </div>
 
   <!-- 3D Canvas -->
   <div id="canvas-container"></div>
@@ -430,24 +426,29 @@
     <header class="header-bar">
       <div class="title-group">
         <h1>🎂 Happy Birthday</h1>
-        <span class="title-badge">3D Physics</span>
+        <span class="title-badge">3D Falling</span>
       </div>
       <div class="header-actions">
-        <button class="icon-btn" id="theme-btn" title="Đổi màu giao diện">🎨</button>
-        <button class="icon-btn" id="audio-btn" title="Bật/Tắt nhạc">🎵</button>
+        <button class="icon-btn" id="theme-btn" title="Đổi màu nền">🎨</button>
+        <button class="icon-btn music-pulse" id="audio-btn" title="Bật/Tắt nhạc">🎵</button>
         <button class="icon-btn" id="qr-btn" title="Mã QR chia sẻ">📱</button>
       </div>
     </header>
 
-    <!-- Interactive Hint Toast -->
-    <div class="tip-toast" id="tip-toast">
-      💡 Chạm hoặc kéo chuột để quăng ném lời chúc!
+    <!-- Hint Pill -->
+    <div class="hint-pill">
+      <span>✨</span> Chạm hoặc kéo chuột để quăng ném lời chúc & quà cáp!
+    </div>
+
+    <!-- Tap anywhere for music prompt (auto fades out once music plays) -->
+    <div class="sound-banner" id="sound-banner">
+      🎵 Chạm màn hình để bật bài hát chúc mừng sinh nhật!
     </div>
 
     <!-- Bottom Actions -->
     <footer class="bottom-bar">
       <button class="action-btn btn-primary" id="add-btn">
-        <span>✨</span> Thả Thêm Chúc Mừng
+        <span>✨</span> Thêm Lời Chúc & Quà
       </button>
       <button class="action-btn btn-secondary" id="shake-btn">
         <span>🎲</span> Lắc Tung Nóc
@@ -458,24 +459,12 @@
     </footer>
   </div>
 
-  <!-- Welcome / Tap to Open Modal -->
-  <div class="modal-overlay" id="welcome-modal">
-    <div class="welcome-card">
-      <div class="gift-box-icon">🎁</div>
-      <h2>Một Món Quà Sinh Nhật<br>Bất Ngờ Dành Cho Bạn!</h2>
-      <p>Nhấn nút bên dưới để mở hộp quà, thưởng thức giai điệu chúc mừng và tương tác với các lời chúc 3D rơi tự do siêu xịn!</p>
-      <button class="btn-open-gift" id="start-btn">
-        <span>🎁</span> Mở Quà Ngay!
-      </button>
-    </div>
-  </div>
-
   <!-- QR Code Modal -->
   <div class="qr-modal" id="qr-modal">
     <div class="qr-card">
       <button class="qr-close-btn" id="qr-close">&times;</button>
-      <h3 style="font-size: 1.3rem; margin-bottom: 6px; font-weight: 800;">📱 Quét Mã QR</h3>
-      <p style="font-size: 0.85rem; color: rgba(255,255,255,0.7);">Quét mã bằng camera điện thoại để trải nghiệm vuốt ném trên màn hình cảm ứng!</p>
+      <h3 style="font-size: 1.25rem; margin-bottom: 6px; font-weight: 800;">📱 Quét Mã QR</h3>
+      <p style="font-size: 0.82rem; color: rgba(255,255,255,0.7);">Mở camera quét mã để trải nghiệm vuốt ném trên điện thoại!</p>
       <div id="qrcode-box"></div>
       <input type="text" class="share-link-input" id="share-link-input" readonly>
       <button class="copy-btn" id="copy-link-btn">📋 Sao Chép Link</button>
@@ -487,143 +476,117 @@
        1. DATA DEFINITIONS & PALETTES
        ========================================================================= */
     const WISHES = [
-      { text: "🎂 HAPPY BIRTHDAY 🎂", bg: ["#ff416c", "#ff4b2b"], size: "large", shape: "pill" },
-      { text: "Tuổi Mới Rực Rỡ ✨", bg: ["#f7971e", "#ffd200"], size: "medium", shape: "pill" },
-      { text: "Luôn Xinh Đẹp & Yêu Đời 💖", bg: ["#ff758c", "#ff7eb3"], size: "medium", shape: "pill" },
-      { text: "Vạn Sự Như Ý 🍀", bg: ["#11998e", "#38ef7d"], size: "medium", shape: "pill" },
-      { text: "Tiền Vào Như Nước 💰", bg: ["#f12711", "#f5af19"], size: "medium", shape: "pill" },
-      { text: "Thành Công Bứt Phá 🚀", bg: ["#8a2387", "#e94057"], size: "medium", shape: "pill" },
-      { text: "Bình An & Hạnh Phúc 🥰", bg: ["#4facfe", "#00f2fe"], size: "medium", shape: "pill" },
-      { text: "Tỏa Sáng Theo Cách Riêng 🌟", bg: ["#b224ef", "#7579ff"], size: "medium", shape: "pill" },
-      { text: "Sức Khỏe Vô Biên 💪", bg: ["#0ba360", "#3cba92"], size: "medium", shape: "pill" },
-      { text: "Ước Gì Được Nấy 🎁", bg: ["#ff0844", "#ffb199"], size: "medium", shape: "pill" },
-      { text: "Mãi Đỉnh - Mãi Xịn 💯", bg: ["#654ea3", "#eaafc8"], size: "small", shape: "pill" },
-      { text: "You Are The Best! 👑", bg: ["#f857a6", "#ff5858"], size: "medium", shape: "pill" },
-      { text: "Mỗi Ngày Một Niềm Vui 🌈", bg: ["#00c6ff", "#0072ff"], size: "medium", shape: "pill" },
-      { text: "May Mắn Tràn Đầy 🌸", bg: ["#f093fb", "#f5576c"], size: "small", shape: "pill" },
-      { text: "Happy 2026 🎉", bg: ["#fa709a", "#fee140"], size: "small", shape: "pill" },
-      { text: "Cheers To You 🥂", bg: ["#d299c2", "#fef9d7"], size: "small", shape: "pill" }
+      { text: "🎂 HAPPY BIRTHDAY 🎂", bg: ["#ff416c", "#ff4b2b"], size: "large" },
+      { text: "Chúc Mừng Sinh Nhật Sếp! 👑", bg: ["#f7971e", "#ffd200"], size: "large" },
+      { text: "Tuổi Mới Rực Rỡ ✨", bg: ["#ff758c", "#ff7eb3"], size: "medium" },
+      { text: "Luôn Vui Vẻ & Hạnh Phúc 🥰", bg: ["#b224ef", "#7579ff"], size: "medium" },
+      { text: "Tiền Vào Như Nước 💰", bg: ["#11998e", "#38ef7d"], size: "medium" },
+      { text: "Thành Công Bứt Phá 🚀", bg: ["#8a2387", "#e94057"], size: "medium" },
+      { text: "Mãi Đỉnh - Mãi Đẹp Trai 😎", bg: ["#f12711", "#f5af19"], size: "medium" },
+      { text: "Vạn Sự Như Ý 🍀", bg: ["#00c6ff", "#0072ff"], size: "medium" },
+      { text: "Sức Khỏe Vô Biên 💪", bg: ["#0ba360", "#3cba92"], size: "medium" },
+      { text: "Ước Gì Được Nấy 🌟", bg: ["#ff0844", "#ffb199"], size: "medium" },
+      { text: "Trẻ Mãi Không Già 🌸", bg: ["#f857a6", "#ff5858"], size: "medium" },
+      { text: "Gia Đình Bình An ❤️", bg: ["#654ea3", "#eaafc8"], size: "medium" },
+      { text: "Mỗi Ngày Một Niềm Vui 🌈", bg: ["#fa709a", "#fee140"], size: "medium" },
+      { text: "May Mắn Tràn Đầy 🥂", bg: ["#4facfe", "#00f2fe"], size: "small" }
     ];
 
     const THEMES = [
-      { name: "Dark Velvet", bg: "radial-gradient(circle at 50% 30%, #2a164d 0%, #170d2c 50%, #0c0617 100%)" },
+      { name: "Dark Velvet", bg: "radial-gradient(circle at 50% 30%, #2d144e 0%, #170a2c 55%, #0c0517 100%)" },
       { name: "Neon Party", bg: "radial-gradient(circle at 50% 30%, #1a0b36 0%, #090014 60%, #000000 100%)" },
-      { name: "Sweet Pastel", bg: "radial-gradient(circle at 50% 30%, #4a2b4b 0%, #29122b 60%, #150617 100%)" },
-      { name: "Golden Luxury", bg: "radial-gradient(circle at 50% 30%, #3d2b0f 0%, #211604 60%, #0d0901 100%)" }
+      { name: "Sweet Pink", bg: "radial-gradient(circle at 50% 30%, #4a1f3e 0%, #290f23 60%, #140511 100%)" },
+      { name: "Golden Royal", bg: "radial-gradient(circle at 50% 30%, #3d2b0f 0%, #211604 60%, #0d0901 100%)" }
     ];
     let currentThemeIdx = 0;
 
     /* =========================================================================
-       2. WEB AUDIO SYNTHESIZER (Happy Birthday Melody + Sound FX)
+       2. AUDIO CONTROLLER (MP3 Birthday Song + Web Audio Pop FX)
        ========================================================================= */
-    class BirthdayAudio {
-      constructor() {
-        this.ctx = null;
-        this.isPlaying = false;
-        this.timeoutId = null;
-        this.gainNode = null;
+    const bgMusic = document.getElementById('bg-music');
+    const audioBtn = document.getElementById('audio-btn');
+    const soundBanner = document.getElementById('sound-banner');
+    let isMusicPlaying = false;
+    let audioCtx = null;
+
+    function initAudioContext() {
+      if (!audioCtx) {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        audioCtx = new AudioContext();
       }
-
-      init() {
-        if (!this.ctx) {
-          const AudioContext = window.AudioContext || window.webkitAudioContext;
-          this.ctx = new AudioContext();
-          this.gainNode = this.ctx.createGain();
-          this.gainNode.gain.value = 0.25;
-          this.gainNode.connect(this.ctx.destination);
-        }
-        if (this.ctx.state === 'suspended') {
-          this.ctx.resume();
-        }
-      }
-
-      playTone(freq, duration, type = 'sine', startTime = 0) {
-        if (!this.ctx) return;
-        const osc = this.ctx.createOscillator();
-        const toneGain = this.ctx.createGain();
-        
-        osc.type = type;
-        osc.frequency.setValueAtTime(freq, this.ctx.currentTime + startTime);
-        
-        // Bell/Kalimba envelope
-        toneGain.gain.setValueAtTime(0, this.ctx.currentTime + startTime);
-        toneGain.gain.linearRampToValueAtTime(0.3, this.ctx.currentTime + startTime + 0.02);
-        toneGain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + startTime + duration);
-        
-        osc.connect(toneGain);
-        toneGain.connect(this.gainNode);
-        
-        osc.start(this.ctx.currentTime + startTime);
-        osc.stop(this.ctx.currentTime + startTime + duration);
-      }
-
-      playPop() {
-        if (!this.ctx) return;
-        const osc = this.ctx.createOscillator();
-        const g = this.ctx.createGain();
-        osc.type = 'triangle';
-        const now = this.ctx.currentTime;
-        osc.frequency.setValueAtTime(450, now);
-        osc.frequency.exponentialRampToValueAtTime(150, now + 0.08);
-        g.gain.setValueAtTime(0.12, now);
-        g.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
-        osc.connect(g);
-        g.connect(this.ctx.destination);
-        osc.start(now);
-        osc.stop(now + 0.08);
-      }
-
-      startMelody() {
-        if (!this.ctx) this.init();
-        this.isPlaying = true;
-        
-        // Happy Birthday notes: [freq, durationInBeats]
-        // Key of C: C4=261.63, D4=293.66, E4=329.63, F4=349.23, G4=392.00, A4=440.00, B4=493.88, C5=523.25
-        const notes = [
-          { f: 261.63, d: 0.75 }, { f: 261.63, d: 0.25 }, { f: 293.66, d: 1 }, { f: 261.63, d: 1 }, { f: 349.23, d: 1 }, { f: 329.63, d: 2 },
-          { f: 261.63, d: 0.75 }, { f: 261.63, d: 0.25 }, { f: 293.66, d: 1 }, { f: 261.63, d: 1 }, { f: 392.00, d: 1 }, { f: 349.23, d: 2 },
-          { f: 261.63, d: 0.75 }, { f: 261.63, d: 0.25 }, { f: 523.25, d: 1 }, { f: 440.00, d: 1 }, { f: 349.23, d: 1 }, { f: 329.63, d: 1 }, { f: 293.66, d: 1 },
-          { f: 466.16, d: 0.75 }, { f: 466.16, d: 0.25 }, { f: 440.00, d: 1 }, { f: 349.23, d: 1 }, { f: 392.00, d: 1 }, { f: 349.23, d: 2.5 }
-        ];
-
-        const beatSec = 0.48;
-        let scheduleTime = 0;
-
-        const playLoop = () => {
-          if (!this.isPlaying) return;
-          scheduleTime = 0;
-          notes.forEach(n => {
-            const dur = n.d * beatSec;
-            // Play harmonic bell
-            this.playTone(n.f, dur * 1.2, 'sine', scheduleTime);
-            this.playTone(n.f * 2, dur * 0.8, 'triangle', scheduleTime);
-            scheduleTime += dur;
-          });
-
-          this.timeoutId = setTimeout(() => {
-            if (this.isPlaying) playLoop();
-          }, (scheduleTime + 1.5) * 1000);
-        };
-
-        playLoop();
-      }
-
-      stopMelody() {
-        this.isPlaying = false;
-        if (this.timeoutId) clearTimeout(this.timeoutId);
-      }
-
-      toggle() {
-        if (this.isPlaying) {
-          this.stopMelody();
-          return false;
-        } else {
-          this.startMelody();
-          return true;
-        }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
       }
     }
-    const audio = new BirthdayAudio();
+
+    function playPopSound() {
+      try {
+        if (!audioCtx) initAudioContext();
+        if (!audioCtx || audioCtx.state === 'suspended') return;
+        const osc = audioCtx.createOscillator();
+        const g = audioCtx.createGain();
+        osc.type = 'sine';
+        const now = audioCtx.currentTime;
+        osc.frequency.setValueAtTime(520, now);
+        osc.frequency.exponentialRampToValueAtTime(220, now + 0.07);
+        g.gain.setValueAtTime(0.08, now);
+        g.gain.exponentialRampToValueAtTime(0.001, now + 0.07);
+        osc.connect(g);
+        g.connect(audioCtx.destination);
+        osc.start(now);
+        osc.stop(now + 0.07);
+      } catch (e) {}
+    }
+
+    function tryPlayMusic() {
+      initAudioContext();
+      bgMusic.volume = 0.8;
+      const playPromise = bgMusic.play();
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          isMusicPlaying = true;
+          audioBtn.textContent = '🔊';
+          audioBtn.classList.remove('music-pulse');
+          soundBanner.classList.remove('show');
+        }).catch(() => {
+          // Autoplay was blocked by browser
+          isMusicPlaying = false;
+          audioBtn.textContent = '🎵';
+          audioBtn.classList.add('music-pulse');
+          soundBanner.classList.add('show');
+        });
+      }
+    }
+
+    // Auto-unlock sound on first user gesture anywhere
+    function unlockAudioOnGesture() {
+      if (!isMusicPlaying) {
+        tryPlayMusic();
+      }
+      soundBanner.classList.remove('show');
+      window.removeEventListener('pointerdown', unlockAudioOnGesture);
+      window.removeEventListener('touchstart', unlockAudioOnGesture);
+      window.removeEventListener('click', unlockAudioOnGesture);
+    }
+    window.addEventListener('pointerdown', unlockAudioOnGesture, { passive: true });
+    window.addEventListener('touchstart', unlockAudioOnGesture, { passive: true });
+    window.addEventListener('click', unlockAudioOnGesture, { passive: true });
+
+    audioBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      initAudioContext();
+      if (bgMusic.paused) {
+        bgMusic.play();
+        isMusicPlaying = true;
+        audioBtn.textContent = '🔊';
+        audioBtn.classList.remove('music-pulse');
+        soundBanner.classList.remove('show');
+      } else {
+        bgMusic.pause();
+        isMusicPlaying = false;
+        audioBtn.textContent = '🔇';
+      }
+    });
 
     /* =========================================================================
        3. THREE.JS & CANNON-ES SETUP
@@ -632,7 +595,6 @@
     let width = window.innerWidth;
     let height = window.innerHeight;
 
-    // Three.js Scene, Camera, Renderer
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
     camera.position.set(0, 0, 22);
@@ -644,30 +606,30 @@
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     container.appendChild(renderer.domElement);
 
-    // Lights
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.85);
+    // Studio Lighting
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.9);
     scene.add(ambientLight);
 
-    const dirLight = new THREE.DirectionalLight(0xffffff, 1.2);
-    dirLight.position.set(10, 20, 15);
+    const dirLight = new THREE.DirectionalLight(0xffffff, 1.3);
+    dirLight.position.set(8, 20, 16);
     dirLight.castShadow = true;
     dirLight.shadow.mapSize.width = 1024;
     dirLight.shadow.mapSize.height = 1024;
     scene.add(dirLight);
 
-    const pointLight = new THREE.PointLight(0xff758c, 1.5, 30);
-    pointLight.position.set(-8, 5, 8);
-    scene.add(pointLight);
+    const pointLight1 = new THREE.PointLight(0xff758c, 1.8, 30);
+    pointLight1.position.set(-10, 6, 8);
+    scene.add(pointLight1);
 
-    const pointLight2 = new THREE.PointLight(0xffd166, 1.5, 30);
-    pointLight2.position.set(8, -5, 8);
+    const pointLight2 = new THREE.PointLight(0xffd166, 1.8, 30);
+    pointLight2.position.set(10, -4, 8);
     scene.add(pointLight2);
 
-    // Physics World (Cannon-es)
+    // Physics World
     const world = new CANNON.World();
     world.gravity.set(0, -28, 0);
     world.broadphase = new CANNON.NaiveBroadphase();
-    world.solver.iterations = 12;
+    world.solver.iterations = 10;
 
     const defaultMaterial = new CANNON.Material('default');
     const contactMaterial = new CANNON.ContactMaterial(defaultMaterial, defaultMaterial, {
@@ -676,15 +638,13 @@
     });
     world.addContactMaterial(contactMaterial);
 
-    // Container Boundaries (Floor, Left, Right, Back, Front)
+    // Container Boundaries
     let boundaries = [];
 
     function updateBoundaries() {
-      // Remove old boundary bodies
       boundaries.forEach(b => world.removeBody(b));
       boundaries = [];
 
-      // Calculate camera frustum size at Z=0
       const vFOV = (camera.fov * Math.PI) / 180;
       const visibleHeight = 2 * Math.tan(vFOV / 2) * camera.position.z;
       const visibleWidth = visibleHeight * camera.aspect;
@@ -693,15 +653,15 @@
       const halfH = visibleHeight / 2;
       const depth = 5;
 
-      // Floor (Y = -halfH)
+      // Floor (Y = -halfH + 1.2 to avoid bottom bar overlap)
       const floorBody = new CANNON.Body({ mass: 0, material: defaultMaterial });
       floorBody.addShape(new CANNON.Plane());
       floorBody.quaternion.setFromAxisAngle(new CANNON.Vec3(1, 0, 0), -Math.PI / 2);
-      floorBody.position.set(0, -halfH + 0.2, 0);
+      floorBody.position.set(0, -halfH + 1.2, 0);
       world.addBody(floorBody);
       boundaries.push(floorBody);
 
-      // Left Wall (X = -halfW)
+      // Left Wall
       const leftBody = new CANNON.Body({ mass: 0, material: defaultMaterial });
       leftBody.addShape(new CANNON.Plane());
       leftBody.quaternion.setFromAxisAngle(new CANNON.Vec3(0, 1, 0), Math.PI / 2);
@@ -709,7 +669,7 @@
       world.addBody(leftBody);
       boundaries.push(leftBody);
 
-      // Right Wall (X = halfW)
+      // Right Wall
       const rightBody = new CANNON.Body({ mass: 0, material: defaultMaterial });
       rightBody.addShape(new CANNON.Plane());
       rightBody.quaternion.setFromAxisAngle(new CANNON.Vec3(0, 1, 0), -Math.PI / 2);
@@ -717,14 +677,14 @@
       world.addBody(rightBody);
       boundaries.push(rightBody);
 
-      // Back Wall (Z = -depth)
+      // Back Wall
       const backBody = new CANNON.Body({ mass: 0, material: defaultMaterial });
       backBody.addShape(new CANNON.Plane());
       backBody.position.set(0, 0, -depth);
       world.addBody(backBody);
       boundaries.push(backBody);
 
-      // Front Wall (Z = depth)
+      // Front Wall
       const frontBody = new CANNON.Body({ mass: 0, material: defaultMaterial });
       frontBody.addShape(new CANNON.Plane());
       frontBody.quaternion.setFromAxisAngle(new CANNON.Vec3(0, 1, 0), Math.PI);
@@ -735,17 +695,16 @@
     updateBoundaries();
 
     /* =========================================================================
-       4. TEXTURE GENERATOR & 3D PILL CREATION
+       4. TEXTURE & 3D MESH GENERATORS
        ========================================================================= */
-    const items = []; // Stores { mesh, body }
+    const items = [];
 
-    function createPillTexture(text, colors, w = 512, h = 180) {
+    function createPillTexture(text, colors, w = 600, h = 190) {
       const canvas = document.createElement('canvas');
       canvas.width = w;
       canvas.height = h;
       const ctx = canvas.getContext('2d');
-
-      const r = h / 2; // Full rounded pill
+      const r = h / 2;
 
       // Background Gradient
       const grad = ctx.createLinearGradient(0, 0, w, h);
@@ -767,27 +726,27 @@
       ctx.fillStyle = grad;
       ctx.fill();
 
-      // Inner Highlight / 3D Rim
-      ctx.lineWidth = 6;
+      // 3D Outer Rim
+      ctx.lineWidth = 7;
       ctx.strokeStyle = 'rgba(255, 255, 255, 0.45)';
       ctx.stroke();
 
-      // Subtle Top Gloss
+      // Top Glass Highlight
       ctx.save();
       ctx.clip();
-      const glossGrad = ctx.createLinearGradient(0, 0, 0, h * 0.5);
-      glossGrad.addColorStop(0, 'rgba(255, 255, 255, 0.35)');
-      glossGrad.addColorStop(1, 'rgba(255, 255, 255, 0)');
-      ctx.fillStyle = glossGrad;
-      ctx.fillRect(0, 0, w, h * 0.5);
+      const gloss = ctx.createLinearGradient(0, 0, 0, h * 0.45);
+      gloss.addColorStop(0, 'rgba(255, 255, 255, 0.4)');
+      gloss.addColorStop(1, 'rgba(255, 255, 255, 0)');
+      ctx.fillStyle = gloss;
+      ctx.fillRect(0, 0, w, h * 0.45);
       ctx.restore();
 
       // Text
       ctx.fillStyle = '#ffffff';
-      ctx.font = '900 38px "Be Vietnam Pro", sans-serif';
+      ctx.font = '900 37px "Be Vietnam Pro", sans-serif';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      ctx.shadowColor = 'rgba(0, 0, 0, 0.35)';
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.4)';
       ctx.shadowBlur = 10;
       ctx.shadowOffsetY = 4;
       ctx.fillText(text, w / 2, h / 2);
@@ -799,30 +758,32 @@
     }
 
     function createPillMeshAndBody(wish, spawnX = 0, spawnY = 14) {
-      // Dimensions based on size
-      let widthRatio = 4.2;
-      let heightRatio = 1.45;
+      // Responsive size scaling for mobile vs desktop
+      const isMobile = window.innerWidth < 600;
+      const scaleFactor = isMobile ? 0.8 : 1.0;
+
+      let widthRatio = 4.2 * scaleFactor;
+      let heightRatio = 1.45 * scaleFactor;
       let mass = 2.0;
 
       if (wish.size === 'large') {
-        widthRatio = 5.2;
-        heightRatio = 1.6;
-        mass = 3.0;
+        widthRatio = 5.2 * scaleFactor;
+        heightRatio = 1.6 * scaleFactor;
+        mass = 2.8;
       } else if (wish.size === 'small') {
-        widthRatio = 3.4;
-        heightRatio = 1.35;
+        widthRatio = 3.3 * scaleFactor;
+        heightRatio = 1.35 * scaleFactor;
         mass = 1.5;
       }
 
-      const depth = 0.55;
+      const depth = 0.55 * scaleFactor;
       const radius = heightRatio / 2;
       const straightW = Math.max(0.1, widthRatio - 2 * radius);
 
-      // Create Extruded Rounded Shape
       const shape = new THREE.Shape();
       const hw = widthRatio / 2;
       const hh = heightRatio / 2;
-      const r = hh; // Full pill caps
+      const r = hh;
 
       shape.moveTo(-hw + r, -hh);
       shape.lineTo(hw - r, -hh);
@@ -833,38 +794,35 @@
       const extrudeSettings = {
         depth: depth,
         bevelEnabled: true,
-        bevelSegments: 4,
+        bevelSegments: 3,
         steps: 1,
-        bevelSize: 0.1,
-        bevelThickness: 0.1
+        bevelSize: 0.08 * scaleFactor,
+        bevelThickness: 0.08 * scaleFactor
       };
 
       const geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings);
       geometry.center();
 
-      // Front & Back texture
-      const texture = createPillTexture(wish.text, wish.bg, 600, 200);
+      const texture = createPillTexture(wish.text, wish.bg, 600, 190);
 
-      // Multi-material: Front/Back textured, Bevel/Sides smooth glossy plastic
       const sideMat = new THREE.MeshStandardMaterial({
         color: new THREE.Color(wish.bg[0]),
-        roughness: 0.3,
+        roughness: 0.28,
         metalness: 0.1
       });
 
       const faceMat = new THREE.MeshStandardMaterial({
         map: texture,
-        roughness: 0.25,
+        roughness: 0.24,
         metalness: 0.05
       });
 
-      // Front and back face use faceMat, sides use sideMat
       const materials = [faceMat, sideMat];
       const mesh = new THREE.Mesh(geometry, materials);
       mesh.castShadow = true;
       mesh.receiveShadow = true;
 
-      // Physics Body (Cannon-es Compound Shape: Box + 2 Spheres on edges)
+      // Physics Body
       const body = new CANNON.Body({ mass: mass, material: defaultMaterial });
       const mainBox = new CANNON.Box(new CANNON.Vec3(straightW / 2, hh, depth / 2));
       body.addShape(mainBox);
@@ -880,18 +838,15 @@
         (Math.random() - 0.5) * 0.8
       );
 
-      // Add slight random spin
       body.angularVelocity.set(
         (Math.random() - 0.5) * 3,
         (Math.random() - 0.5) * 3,
         (Math.random() - 0.5) * 5
       );
 
-      // Sound on collision
       body.addEventListener('collide', (e) => {
-        const relVel = e.contact.getImpactVelocityAlongNormal();
-        if (Math.abs(relVel) > 4.5) {
-          audio.playPop();
+        if (Math.abs(e.contact.getImpactVelocityAlongNormal()) > 5.0) {
+          playPopSound();
         }
       });
 
@@ -903,13 +858,17 @@
       return item;
     }
 
-    // Spawn 3D Gift Box
+    // 3D Gift Box 🎁
     function createGiftBox(spawnX = 0, spawnY = 15) {
-      const size = 1.6;
+      const isMobile = window.innerWidth < 600;
+      const size = (isMobile ? 1.4 : 1.7);
       const geometry = new THREE.BoxGeometry(size, size, size);
-      
+
+      const colors = [0xff416c, 0xb224ef, 0x11998e, 0xf7971e];
+      const boxColor = colors[Math.floor(Math.random() * colors.length)];
+
       const boxMat = new THREE.MeshStandardMaterial({
-        color: 0xff416c,
+        color: boxColor,
         roughness: 0.25,
         metalness: 0.1
       });
@@ -920,15 +879,13 @@
       });
 
       const mesh = new THREE.Mesh(geometry, boxMat);
-      
-      // Ribbon cross
-      const rH = new THREE.Mesh(new THREE.BoxGeometry(size + 0.05, 0.3, size + 0.05), ribbonMat);
-      const rV = new THREE.Mesh(new THREE.BoxGeometry(0.3, size + 0.05, size + 0.05), ribbonMat);
+      const rH = new THREE.Mesh(new THREE.BoxGeometry(size + 0.04, 0.32, size + 0.04), ribbonMat);
+      const rV = new THREE.Mesh(new THREE.BoxGeometry(0.32, size + 0.04, size + 0.04), ribbonMat);
       mesh.add(rH);
       mesh.add(rV);
       mesh.castShadow = true;
 
-      const body = new CANNON.Body({ mass: 2.5, material: defaultMaterial });
+      const body = new CANNON.Body({ mass: 2.2, material: defaultMaterial });
       body.addShape(new CANNON.Box(new CANNON.Vec3(size / 2, size / 2, size / 2)));
       body.position.set(spawnX, spawnY, (Math.random() - 0.5) * 2);
       body.angularVelocity.set(
@@ -938,7 +895,7 @@
       );
 
       body.addEventListener('collide', (e) => {
-        if (Math.abs(e.contact.getImpactVelocityAlongNormal()) > 4.5) audio.playPop();
+        if (Math.abs(e.contact.getImpactVelocityAlongNormal()) > 5.0) playPopSound();
       });
 
       scene.add(mesh);
@@ -946,8 +903,52 @@
       items.push({ mesh, body, type: 'gift' });
     }
 
+    // 3D Birthday Cake 🎂
+    function createBirthdayCake(spawnX = 0, spawnY = 16) {
+      const group = new THREE.Group();
+      
+      // Bottom layer
+      const bGeo = new THREE.CylinderGeometry(1.2, 1.2, 0.7, 24);
+      const bMat = new THREE.MeshStandardMaterial({ color: 0xffe3e3, roughness: 0.3 });
+      const bMesh = new THREE.Mesh(bGeo, bMat);
+      bMesh.position.y = -0.35;
+      group.add(bMesh);
+
+      // Top layer
+      const tGeo = new THREE.CylinderGeometry(0.85, 0.85, 0.6, 24);
+      const tMat = new THREE.MeshStandardMaterial({ color: 0xff758c, roughness: 0.3 });
+      const tMesh = new THREE.Mesh(tGeo, tMat);
+      tMesh.position.y = 0.3;
+      group.add(tMesh);
+
+      // Candle
+      const cGeo = new THREE.CylinderGeometry(0.08, 0.08, 0.5, 12);
+      const cMat = new THREE.MeshStandardMaterial({ color: 0xffd166, roughness: 0.2 });
+      const cMesh = new THREE.Mesh(cGeo, cMat);
+      cMesh.position.y = 0.85;
+      group.add(cMesh);
+
+      // Flame
+      const fGeo = new THREE.SphereGeometry(0.12, 12, 12);
+      const fMat = new THREE.MeshBasicMaterial({ color: 0xff4b2b });
+      const fMesh = new THREE.Mesh(fGeo, fMat);
+      fMesh.position.y = 1.15;
+      group.add(fMesh);
+
+      group.castShadow = true;
+
+      const body = new CANNON.Body({ mass: 2.5, material: defaultMaterial });
+      body.addShape(new CANNON.Cylinder(1.2, 1.2, 1.4, 16));
+      body.position.set(spawnX, spawnY, (Math.random() - 0.5) * 2);
+      body.angularVelocity.set((Math.random() - 0.5) * 3, (Math.random() - 0.5) * 3, (Math.random() - 0.5) * 3);
+
+      scene.add(group);
+      world.addBody(body);
+      items.push({ mesh: group, body, type: 'cake' });
+    }
+
     /* =========================================================================
-       5. DRAG & THROW INTERACTION (RAYCASTER + SPRING)
+       5. DRAG & THROW INTERACTION
        ========================================================================= */
     const raycaster = new THREE.Raycaster();
     const mouse = new THREE.Vector2();
@@ -960,11 +961,13 @@
     let mouseVelocity = new THREE.Vector3();
 
     function getPointerPos(e) {
-      const x = e.touches ? e.touches[0].clientX : e.clientX;
-      const y = e.touches ? e.touches[0].clientY : e.clientY;
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
       return {
-        x: (x / window.innerWidth) * 2 - 1,
-        y: -(y / window.innerHeight) * 2 + 1
+        x: (clientX / window.innerWidth) * 2 - 1,
+        y: -(clientY / window.innerHeight) * 2 + 1,
+        rawX: clientX,
+        rawY: clientY
       };
     }
 
@@ -989,7 +992,6 @@
           selectedBody = found.body;
           selectedBody.wakeUp();
 
-          // Set drag plane at the body's Z position
           dragPlane.constant = -selectedBody.position.z;
           raycaster.ray.intersectPlane(dragPlane, planeIntersect);
           dragOffset.copy(planeIntersect).sub(
@@ -999,13 +1001,13 @@
           prevMousePos.copy(planeIntersect);
           mouseVelocity.set(0, 0, 0);
 
-          audio.playPop();
+          playPopSound();
           confetti({
-            particleCount: 15,
+            particleCount: 16,
             spread: 50,
             origin: {
-              x: (e.touches ? e.touches[0].clientX : e.clientX) / window.innerWidth,
-              y: (e.touches ? e.touches[0].clientY : e.clientY) / window.innerHeight
+              x: pos.rawX / window.innerWidth,
+              y: pos.rawY / window.innerHeight
             }
           });
         }
@@ -1022,14 +1024,12 @@
       if (raycaster.ray.intersectPlane(dragPlane, planeIntersect)) {
         const targetPos = planeIntersect.clone().sub(dragOffset);
         
-        // Compute velocity for throw
-        mouseVelocity.copy(planeIntersect).sub(prevMousePos).multiplyScalar(40);
+        mouseVelocity.copy(planeIntersect).sub(prevMousePos).multiplyScalar(35);
         prevMousePos.copy(planeIntersect);
 
-        // Move physics body towards target
         selectedBody.velocity.set(
-          (targetPos.x - selectedBody.position.x) * 20,
-          (targetPos.y - selectedBody.position.y) * 20,
+          (targetPos.x - selectedBody.position.x) * 22,
+          (targetPos.y - selectedBody.position.y) * 22,
           (targetPos.z - selectedBody.position.z) * 15
         );
         selectedBody.wakeUp();
@@ -1038,10 +1038,9 @@
 
     function onPointerUp() {
       if (isDragging && selectedBody) {
-        // Apply throw impulse
         selectedBody.velocity.set(
-          mouseVelocity.x * 0.8,
-          mouseVelocity.y * 0.8,
+          mouseVelocity.x * 0.85,
+          mouseVelocity.y * 0.85,
           (Math.random() - 0.5) * 5
         );
         selectedBody.angularVelocity.set(
@@ -1063,39 +1062,56 @@
     window.addEventListener('touchend', onPointerUp);
 
     /* =========================================================================
-       6. LIFECYCLE & SPAWN CONTROLS
+       6. LIFECYCLE & AUTO-SPAWN (VÀO PHÁT LÀ RƠI LUÔN!)
        ========================================================================= */
     let wishIndex = 0;
 
     function dropNextWish() {
       const wish = WISHES[wishIndex % WISHES.length];
-      const spawnX = (Math.random() - 0.5) * 6;
+      const spawnX = (Math.random() - 0.5) * 5.5;
       const spawnY = 12 + Math.random() * 4;
       createPillMeshAndBody(wish, spawnX, spawnY);
       wishIndex++;
     }
 
     function dropGift() {
-      const spawnX = (Math.random() - 0.5) * 6;
-      createGiftBox(spawnX, 13);
+      const spawnX = (Math.random() - 0.5) * 5;
+      createGiftBox(spawnX, 13 + Math.random() * 3);
     }
 
-    function dropInitialBatch() {
-      // Drop initial batch sequentially
-      for (let i = 0; i < 8; i++) {
-        setTimeout(() => {
-          dropNextWish();
-          if (i === 3 || i === 7) dropGift();
-        }, i * 220);
-      }
+    function dropCake() {
+      const spawnX = (Math.random() - 0.5) * 4;
+      createBirthdayCake(spawnX, 15);
+    }
+
+    function triggerBigConfetti() {
+      confetti({
+        particleCount: 80,
+        spread: 75,
+        origin: { y: 0.65 }
+      });
+      setTimeout(() => {
+        confetti({
+          particleCount: 50,
+          angle: 60,
+          spread: 55,
+          origin: { x: 0 }
+        });
+        confetti({
+          particleCount: 50,
+          angle: 120,
+          spread: 55,
+          origin: { x: 1 }
+        });
+      }, 200);
     }
 
     function shakeAll() {
       items.forEach(item => {
         item.body.wakeUp();
         item.body.velocity.set(
-          (Math.random() - 0.5) * 20,
-          16 + Math.random() * 14,
+          (Math.random() - 0.5) * 22,
+          18 + Math.random() * 14,
           (Math.random() - 0.5) * 12
         );
         item.body.angularVelocity.set(
@@ -1104,81 +1120,61 @@
           (Math.random() - 0.5) * 15
         );
       });
-      triggerConfetti();
+      triggerBigConfetti();
     }
 
-    function triggerConfetti() {
-      confetti({
-        particleCount: 100,
-        spread: 80,
-        origin: { y: 0.65 }
-      });
-      confetti({
-        particleCount: 50,
-        angle: 60,
-        spread: 60,
-        origin: { x: 0 }
-      });
-      confetti({
-        particleCount: 50,
-        angle: 120,
-        spread: 60,
-        origin: { x: 1 }
-      });
+    // AUTO-START ON PAGE LOAD (Không cần bấm nút nào cả!)
+    function startInstantly() {
+      // 1. Drop wishes & gifts sequentially
+      for (let i = 0; i < 9; i++) {
+        setTimeout(() => {
+          dropNextWish();
+          if (i === 1 || i === 6) dropGift();
+          if (i === 4) dropCake();
+        }, i * 220);
+      }
+
+      // 2. Confetti explosion
+      triggerBigConfetti();
+
+      // 3. Try autoplay music immediately
+      tryPlayMusic();
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', startInstantly);
+    } else {
+      startInstantly();
     }
 
     /* =========================================================================
-       7. UI INTERACTIONS & MODALS
+       7. UI BUTTONS & CONTROLS
        ========================================================================= */
-    const welcomeModal = document.getElementById('welcome-modal');
-    const startBtn = document.getElementById('start-btn');
     const addBtn = document.getElementById('add-btn');
     const shakeBtn = document.getElementById('shake-btn');
     const confettiBtn = document.getElementById('confetti-btn');
-    const audioBtn = document.getElementById('audio-btn');
     const themeBtn = document.getElementById('theme-btn');
     const qrBtn = document.getElementById('qr-btn');
     const qrModal = document.getElementById('qr-modal');
     const qrClose = document.getElementById('qr-close');
     const copyLinkBtn = document.getElementById('copy-link-btn');
     const shareLinkInput = document.getElementById('share-link-input');
-    const tipToast = document.getElementById('tip-toast');
-
-    // Start App on Gift Open
-    startBtn.addEventListener('click', () => {
-      welcomeModal.classList.add('hidden');
-      audio.init();
-      audio.startMelody();
-      audioBtn.textContent = '🔊';
-      triggerConfetti();
-      dropInitialBatch();
-
-      // Show tip toast for 4 seconds
-      tipToast.classList.add('show');
-      setTimeout(() => {
-        tipToast.classList.remove('show');
-      }, 4000);
-    });
 
     addBtn.addEventListener('click', () => {
       dropNextWish();
-      if (Math.random() > 0.6) dropGift();
+      if (Math.random() > 0.5) dropGift();
+      if (Math.random() > 0.8) dropCake();
     });
 
     shakeBtn.addEventListener('click', shakeAll);
-    confettiBtn.addEventListener('click', triggerConfetti);
-
-    audioBtn.addEventListener('click', () => {
-      const playing = audio.toggle();
-      audioBtn.textContent = playing ? '🔊' : '🔇';
-    });
+    confettiBtn.addEventListener('click', triggerBigConfetti);
 
     themeBtn.addEventListener('click', () => {
       currentThemeIdx = (currentThemeIdx + 1) % THEMES.length;
       document.getElementById('bg-gradient').style.background = THEMES[currentThemeIdx].bg;
     });
 
-    // QR Code Generator
+    // QR Code Modal Generator
     function generateQR() {
       const url = window.location.href;
       shareLinkInput.value = url;
@@ -1186,9 +1182,9 @@
       box.innerHTML = '';
       new QRCode(box, {
         text: url,
-        width: 180,
-        height: 180,
-        colorDark: '#1a0f29',
+        width: 175,
+        height: 175,
+        colorDark: '#1a0e2b',
         colorLight: '#ffffff',
         correctLevel: QRCode.CorrectLevel.H
       });
@@ -1212,12 +1208,12 @@
       });
     });
 
-    // Device Orientation / Tilt support on mobile
+    // Device Tilt Gravity on Mobile
     if (window.DeviceOrientationEvent) {
       window.addEventListener('deviceorientation', (e) => {
         if (e.gamma !== null && e.beta !== null) {
-          const gx = Math.min(Math.max(e.gamma / 3, -15), 15);
-          const gy = Math.min(Math.max(-e.beta / 3, -35), -10);
+          const gx = Math.min(Math.max(e.gamma / 2.8, -15), 15);
+          const gy = Math.min(Math.max(-e.beta / 2.8, -35), -12);
           world.gravity.set(gx, gy, 0);
         }
       });
@@ -1235,7 +1231,6 @@
       const delta = Math.min(clock.getDelta(), 0.1);
       world.step(fixedTimeStep, delta, 3);
 
-      // Sync Three.js Meshes with Cannon Bodies
       for (let i = 0; i < items.length; i++) {
         const item = items[i];
         item.mesh.position.copy(item.body.position);
