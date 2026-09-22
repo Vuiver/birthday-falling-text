@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>🎉 Chúc Mừng Sinh Nhật - 3D Falling Wishes 🎂</title>
-  <meta name="description" content="Thiệp chúc mừng sinh nhật 3D tương tác vật lý sống động, âm nhạc và lời chúc rơi tự do độc đáo.">
+  <meta name="description" content="Cơn mưa lời chúc sinh nhật 3D lung linh, âm nhạc và quà cáp rơi tự do độc đáo.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700;800;900&family=Mali:wght@600;700&display=swap" rel="stylesheet">
-  <!-- Three.js & Cannon-es & Confetti -->
+  <!-- Three.js & Controls & Confetti -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/cannon-es@0.20.0/dist/cannon-es.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
@@ -29,7 +29,7 @@
       height: 100%;
       overflow: hidden;
       font-family: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #110e1b;
+      background: #0d0618;
       color: #fff;
     }
 
@@ -46,60 +46,31 @@
     .bg-gradient {
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at 50% 30%, #2d144e 0%, #170a2c 55%, #0c0517 100%);
+      background: radial-gradient(circle at 50% 30%, #2a0f47 0%, #130722 55%, #07020d 100%);
       z-index: 0;
       transition: background 0.8s ease;
     }
 
-    /* Floating Lights Effect */
-    .bg-bubbles {
-      position: absolute;
-      inset: 0;
-      overflow: hidden;
-      z-index: 0;
-      pointer-events: none;
-    }
-
-    .bubble {
+    /* Glowing orbs */
+    .orb {
       position: absolute;
       border-radius: 50%;
-      filter: blur(40px);
+      filter: blur(50px);
       opacity: 0.35;
-      animation: floatBubble 12s infinite alternate ease-in-out;
+      pointer-events: none;
+      z-index: 0;
+      animation: floatOrb 10s infinite alternate ease-in-out;
     }
+    .orb-1 { width: 350px; height: 350px; background: #ff416c; top: 5%; left: 5%; }
+    .orb-2 { width: 300px; height: 300px; background: #ffd166; bottom: 15%; right: 10%; animation-delay: -3s; }
+    .orb-3 { width: 250px; height: 250px; background: #b224ef; top: 40%; right: 30%; animation-delay: -6s; }
 
-    .bubble-1 {
-      width: 320px;
-      height: 320px;
-      background: #ff416c;
-      top: 10%;
-      left: 10%;
-    }
-
-    .bubble-2 {
-      width: 280px;
-      height: 280px;
-      background: #ffd166;
-      bottom: 20%;
-      right: 15%;
-      animation-delay: -4s;
-    }
-
-    .bubble-3 {
-      width: 240px;
-      height: 240px;
-      background: #b224ef;
-      top: 40%;
-      right: 25%;
-      animation-delay: -7s;
-    }
-
-    @keyframes floatBubble {
+    @keyframes floatOrb {
       0% { transform: translate(0, 0) scale(1); }
-      100% { transform: translate(40px, 60px) scale(1.15); }
+      100% { transform: translate(30px, 45px) scale(1.18); }
     }
 
-    /* UI Overlay */
+    /* UI Layer */
     .ui-layer {
       position: absolute;
       inset: 0;
@@ -183,15 +154,15 @@
     }
 
     .music-pulse {
-      animation: musicPulse 1.5s infinite;
+      animation: musicPulse 1.4s infinite;
     }
 
     @keyframes musicPulse {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(255, 117, 140, 0.6); }
-      50% { box-shadow: 0 0 0 8px rgba(255, 117, 140, 0); }
+      0%, 100% { box-shadow: 0 0 0 0 rgba(255, 117, 140, 0.7); }
+      50% { box-shadow: 0 0 0 10px rgba(255, 117, 140, 0); }
     }
 
-    /* Floating Hint Pill */
+    /* Hint Pill */
     .hint-pill {
       align-self: center;
       margin-top: 8px;
@@ -270,17 +241,17 @@
       transform: scale(0.94);
     }
 
-    /* Tap anywhere to play sound banner (subtle, non-blocking) */
+    /* Sound Banner */
     .sound-banner {
       position: absolute;
       bottom: 74px;
       left: 50%;
       transform: translateX(-50%);
-      background: rgba(255, 65, 108, 0.85);
+      background: rgba(255, 65, 108, 0.9);
       backdrop-filter: blur(10px);
-      padding: 6px 16px;
+      padding: 7px 18px;
       border-radius: 20px;
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       font-weight: 700;
       color: #fff;
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
@@ -319,7 +290,7 @@
     }
 
     .qr-card {
-      background: #1e1430;
+      background: #1b0d2b;
       border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 28px;
       padding: 28px 24px;
@@ -411,11 +382,9 @@
 
   <!-- Background Lights -->
   <div class="bg-gradient" id="bg-gradient"></div>
-  <div class="bg-bubbles">
-    <div class="bubble bubble-1"></div>
-    <div class="bubble bubble-2"></div>
-    <div class="bubble bubble-3"></div>
-  </div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
 
   <!-- 3D Canvas -->
   <div id="canvas-container"></div>
@@ -426,7 +395,7 @@
     <header class="header-bar">
       <div class="title-group">
         <h1>🎂 Happy Birthday</h1>
-        <span class="title-badge">3D Falling</span>
+        <span class="title-badge">3D Waterfall</span>
       </div>
       <div class="header-actions">
         <button class="icon-btn" id="theme-btn" title="Đổi màu nền">🎨</button>
@@ -437,10 +406,10 @@
 
     <!-- Hint Pill -->
     <div class="hint-pill">
-      <span>✨</span> Chạm hoặc kéo chuột để quăng ném lời chúc & quà cáp!
+      <span>✨</span> Vuốt xoay 360° & Chạm vào lời chúc để bắn pháo hoa!
     </div>
 
-    <!-- Tap anywhere for music prompt (auto fades out once music plays) -->
+    <!-- Tap anywhere for music prompt -->
     <div class="sound-banner" id="sound-banner">
       🎵 Chạm màn hình để bật bài hát chúc mừng sinh nhật!
     </div>
@@ -448,10 +417,7 @@
     <!-- Bottom Actions -->
     <footer class="bottom-bar">
       <button class="action-btn btn-primary" id="add-btn">
-        <span>✨</span> Thêm Lời Chúc & Quà
-      </button>
-      <button class="action-btn btn-secondary" id="shake-btn">
-        <span>🎲</span> Lắc Tung Nóc
+        <span>✨</span> Thêm Cơn Mưa Quà
       </button>
       <button class="action-btn btn-secondary" id="confetti-btn">
         <span>🎉</span> Bắn Pháo Hoa
@@ -464,7 +430,7 @@
     <div class="qr-card">
       <button class="qr-close-btn" id="qr-close">&times;</button>
       <h3 style="font-size: 1.25rem; margin-bottom: 6px; font-weight: 800;">📱 Quét Mã QR</h3>
-      <p style="font-size: 0.82rem; color: rgba(255,255,255,0.7);">Mở camera quét mã để trải nghiệm vuốt ném trên điện thoại!</p>
+      <p style="font-size: 0.82rem; color: rgba(255,255,255,0.7);">Mở camera quét mã để trải nghiệm vuốt xoay 3D trên điện thoại!</p>
       <div id="qrcode-box"></div>
       <input type="text" class="share-link-input" id="share-link-input" readonly>
       <button class="copy-btn" id="copy-link-btn">📋 Sao Chép Link</button>
@@ -473,7 +439,7 @@
 
   <script>
     /* =========================================================================
-       1. DATA DEFINITIONS & PALETTES
+       1. DATA & PALETTES
        ========================================================================= */
     const WISHES = [
       { text: "🎂 HAPPY BIRTHDAY 🎂", bg: ["#ff416c", "#ff4b2b"], size: "large" },
@@ -489,14 +455,16 @@
       { text: "Trẻ Mãi Không Già 🌸", bg: ["#f857a6", "#ff5858"], size: "medium" },
       { text: "Gia Đình Bình An ❤️", bg: ["#654ea3", "#eaafc8"], size: "medium" },
       { text: "Mỗi Ngày Một Niềm Vui 🌈", bg: ["#fa709a", "#fee140"], size: "medium" },
-      { text: "May Mắn Tràn Đầy 🥂", bg: ["#4facfe", "#00f2fe"], size: "small" }
+      { text: "May Mắn Tràn Đầy 🥂", bg: ["#4facfe", "#00f2fe"], size: "small" },
+      { text: "Chúc Anh Vững Vàng 💎", bg: ["#36d1dc", "#5b86e5"], size: "medium" },
+      { text: "You Are The Best! 🌟", bg: ["#ff758c", "#ff7eb3"], size: "small" }
     ];
 
     const THEMES = [
-      { name: "Dark Velvet", bg: "radial-gradient(circle at 50% 30%, #2d144e 0%, #170a2c 55%, #0c0517 100%)" },
-      { name: "Neon Party", bg: "radial-gradient(circle at 50% 30%, #1a0b36 0%, #090014 60%, #000000 100%)" },
-      { name: "Sweet Pink", bg: "radial-gradient(circle at 50% 30%, #4a1f3e 0%, #290f23 60%, #140511 100%)" },
-      { name: "Golden Royal", bg: "radial-gradient(circle at 50% 30%, #3d2b0f 0%, #211604 60%, #0d0901 100%)" }
+      { name: "Dark Velvet", bg: "radial-gradient(circle at 50% 30%, #2a0f47 0%, #130722 55%, #07020d 100%)" },
+      { name: "Neon Night", bg: "radial-gradient(circle at 50% 30%, #0d1b3e 0%, #050a1b 60%, #000208 100%)" },
+      { name: "Sweet Pink", bg: "radial-gradient(circle at 50% 30%, #4a1334 0%, #250618 60%, #0d0107 100%)" },
+      { name: "Golden Royal", bg: "radial-gradient(circle at 50% 30%, #3d2b0f 0%, #1e1403 60%, #0a0600 100%)" }
     ];
     let currentThemeIdx = 0;
 
@@ -527,20 +495,20 @@
         const g = audioCtx.createGain();
         osc.type = 'sine';
         const now = audioCtx.currentTime;
-        osc.frequency.setValueAtTime(520, now);
-        osc.frequency.exponentialRampToValueAtTime(220, now + 0.07);
-        g.gain.setValueAtTime(0.08, now);
-        g.gain.exponentialRampToValueAtTime(0.001, now + 0.07);
+        osc.frequency.setValueAtTime(540, now);
+        osc.frequency.exponentialRampToValueAtTime(200, now + 0.08);
+        g.gain.setValueAtTime(0.09, now);
+        g.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
         osc.connect(g);
         g.connect(audioCtx.destination);
         osc.start(now);
-        osc.stop(now + 0.07);
+        osc.stop(now + 0.08);
       } catch (e) {}
     }
 
     function tryPlayMusic() {
       initAudioContext();
-      bgMusic.volume = 0.8;
+      bgMusic.volume = 0.85;
       const playPromise = bgMusic.play();
       if (playPromise !== undefined) {
         playPromise.then(() => {
@@ -549,7 +517,6 @@
           audioBtn.classList.remove('music-pulse');
           soundBanner.classList.remove('show');
         }).catch(() => {
-          // Autoplay was blocked by browser
           isMusicPlaying = false;
           audioBtn.textContent = '🎵';
           audioBtn.classList.add('music-pulse');
@@ -558,7 +525,6 @@
       }
     }
 
-    // Auto-unlock sound on first user gesture anywhere
     function unlockAudioOnGesture() {
       if (!isMusicPlaying) {
         tryPlayMusic();
@@ -589,124 +555,94 @@
     });
 
     /* =========================================================================
-       3. THREE.JS & CANNON-ES SETUP
+       3. THREE.JS SCENE, CAMERA, LIGHTS & ORBIT CONTROLS
        ========================================================================= */
     const container = document.getElementById('canvas-container');
     let width = window.innerWidth;
     let height = window.innerHeight;
 
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
-    camera.position.set(0, 0, 22);
+    const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 200);
+    camera.position.set(0, 0, 32);
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setSize(width, height);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     container.appendChild(renderer.domElement);
 
-    // Studio Lighting
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.9);
+    // OrbitControls for 360-degree viewing
+    const controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+    controls.enablePan = false;
+    controls.minDistance = 15;
+    controls.maxDistance = 55;
+    controls.autoRotate = true;
+    controls.autoRotateSpeed = 0.45;
+
+    // Lights
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.95);
     scene.add(ambientLight);
 
-    const dirLight = new THREE.DirectionalLight(0xffffff, 1.3);
-    dirLight.position.set(8, 20, 16);
-    dirLight.castShadow = true;
-    dirLight.shadow.mapSize.width = 1024;
-    dirLight.shadow.mapSize.height = 1024;
+    const dirLight = new THREE.DirectionalLight(0xffffff, 1.4);
+    dirLight.position.set(10, 25, 20);
     scene.add(dirLight);
 
-    const pointLight1 = new THREE.PointLight(0xff758c, 1.8, 30);
-    pointLight1.position.set(-10, 6, 8);
+    const pointLight1 = new THREE.PointLight(0xff758c, 2.0, 50);
+    pointLight1.position.set(-15, 10, 15);
     scene.add(pointLight1);
 
-    const pointLight2 = new THREE.PointLight(0xffd166, 1.8, 30);
-    pointLight2.position.set(10, -4, 8);
+    const pointLight2 = new THREE.PointLight(0xffd166, 2.0, 50);
+    pointLight2.position.set(15, -10, 15);
     scene.add(pointLight2);
 
-    // Physics World
-    const world = new CANNON.World();
-    world.gravity.set(0, -28, 0);
-    world.broadphase = new CANNON.NaiveBroadphase();
-    world.solver.iterations = 10;
+    /* =========================================================================
+       4. FAIRY DUST / STAR PARTICLES (BACKGROUND)
+       ========================================================================= */
+    const particleCount = 200;
+    const particleGeo = new THREE.BufferGeometry();
+    const particlePos = new Float32Array(particleCount * 3);
+    const particleColors = new Float32Array(particleCount * 3);
 
-    const defaultMaterial = new CANNON.Material('default');
-    const contactMaterial = new CANNON.ContactMaterial(defaultMaterial, defaultMaterial, {
-      friction: 0.25,
-      restitution: 0.65
-    });
-    world.addContactMaterial(contactMaterial);
+    for (let i = 0; i < particleCount; i++) {
+      particlePos[i * 3] = (Math.random() - 0.5) * 50;
+      particlePos[i * 3 + 1] = (Math.random() - 0.5) * 60;
+      particlePos[i * 3 + 2] = (Math.random() - 0.5) * 40;
 
-    // Container Boundaries
-    let boundaries = [];
-
-    function updateBoundaries() {
-      boundaries.forEach(b => world.removeBody(b));
-      boundaries = [];
-
-      const vFOV = (camera.fov * Math.PI) / 180;
-      const visibleHeight = 2 * Math.tan(vFOV / 2) * camera.position.z;
-      const visibleWidth = visibleHeight * camera.aspect;
-
-      const halfW = visibleWidth / 2;
-      const halfH = visibleHeight / 2;
-      const depth = 5;
-
-      // Floor (Y = -halfH + 1.2 to avoid bottom bar overlap)
-      const floorBody = new CANNON.Body({ mass: 0, material: defaultMaterial });
-      floorBody.addShape(new CANNON.Plane());
-      floorBody.quaternion.setFromAxisAngle(new CANNON.Vec3(1, 0, 0), -Math.PI / 2);
-      floorBody.position.set(0, -halfH + 1.2, 0);
-      world.addBody(floorBody);
-      boundaries.push(floorBody);
-
-      // Left Wall
-      const leftBody = new CANNON.Body({ mass: 0, material: defaultMaterial });
-      leftBody.addShape(new CANNON.Plane());
-      leftBody.quaternion.setFromAxisAngle(new CANNON.Vec3(0, 1, 0), Math.PI / 2);
-      leftBody.position.set(-halfW, 0, 0);
-      world.addBody(leftBody);
-      boundaries.push(leftBody);
-
-      // Right Wall
-      const rightBody = new CANNON.Body({ mass: 0, material: defaultMaterial });
-      rightBody.addShape(new CANNON.Plane());
-      rightBody.quaternion.setFromAxisAngle(new CANNON.Vec3(0, 1, 0), -Math.PI / 2);
-      rightBody.position.set(halfW, 0, 0);
-      world.addBody(rightBody);
-      boundaries.push(rightBody);
-
-      // Back Wall
-      const backBody = new CANNON.Body({ mass: 0, material: defaultMaterial });
-      backBody.addShape(new CANNON.Plane());
-      backBody.position.set(0, 0, -depth);
-      world.addBody(backBody);
-      boundaries.push(backBody);
-
-      // Front Wall
-      const frontBody = new CANNON.Body({ mass: 0, material: defaultMaterial });
-      frontBody.addShape(new CANNON.Plane());
-      frontBody.quaternion.setFromAxisAngle(new CANNON.Vec3(0, 1, 0), Math.PI);
-      frontBody.position.set(0, 0, depth);
-      world.addBody(frontBody);
-      boundaries.push(frontBody);
+      // Gold & Pink colors
+      if (Math.random() > 0.5) {
+        particleColors[i * 3] = 1.0; particleColors[i * 3 + 1] = 0.82; particleColors[i * 3 + 2] = 0.4;
+      } else {
+        particleColors[i * 3] = 1.0; particleColors[i * 3 + 1] = 0.46; particleColors[i * 3 + 2] = 0.6;
+      }
     }
-    updateBoundaries();
+
+    particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePos, 3));
+    particleGeo.setAttribute('color', new THREE.BufferAttribute(particleColors, 3));
+
+    const particleMat = new THREE.PointsMaterial({
+      size: 0.6,
+      vertexColors: true,
+      transparent: true,
+      opacity: 0.8
+    });
+
+    const particles = new THREE.Points(particleGeo, particleMat);
+    scene.add(particles);
 
     /* =========================================================================
-       4. TEXTURE & 3D MESH GENERATORS
+       5. 3D TEXT & GIFT GENERATORS (WATERFALL SYSTEM)
        ========================================================================= */
-    const items = [];
+    const fallingItems = []; // List of animated items
 
-    function createPillTexture(text, colors, w = 600, h = 190) {
+    function createPillTexture(text, colors, w = 600, h = 180) {
       const canvas = document.createElement('canvas');
       canvas.width = w;
       canvas.height = h;
       const ctx = canvas.getContext('2d');
       const r = h / 2;
 
-      // Background Gradient
+      // Gradient
       const grad = ctx.createLinearGradient(0, 0, w, h);
       grad.addColorStop(0, colors[0]);
       grad.addColorStop(1, colors[1]);
@@ -726,12 +662,12 @@
       ctx.fillStyle = grad;
       ctx.fill();
 
-      // 3D Outer Rim
+      // Rim
       ctx.lineWidth = 7;
       ctx.strokeStyle = 'rgba(255, 255, 255, 0.45)';
       ctx.stroke();
 
-      // Top Glass Highlight
+      // Gloss
       ctx.save();
       ctx.clip();
       const gloss = ctx.createLinearGradient(0, 0, 0, h * 0.45);
@@ -746,7 +682,7 @@
       ctx.font = '900 37px "Be Vietnam Pro", sans-serif';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      ctx.shadowColor = 'rgba(0, 0, 0, 0.4)';
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.35)';
       ctx.shadowBlur = 10;
       ctx.shadowOffsetY = 4;
       ctx.fillText(text, w / 2, h / 2);
@@ -757,28 +693,19 @@
       return texture;
     }
 
-    function createPillMeshAndBody(wish, spawnX = 0, spawnY = 14) {
-      // Responsive size scaling for mobile vs desktop
-      const isMobile = window.innerWidth < 600;
-      const scaleFactor = isMobile ? 0.8 : 1.0;
-
-      let widthRatio = 4.2 * scaleFactor;
-      let heightRatio = 1.45 * scaleFactor;
-      let mass = 2.0;
-
+    function createPillMesh(wish, startX, startY, startZ, speed) {
+      let widthRatio = 4.2;
+      let heightRatio = 1.45;
       if (wish.size === 'large') {
-        widthRatio = 5.2 * scaleFactor;
-        heightRatio = 1.6 * scaleFactor;
-        mass = 2.8;
+        widthRatio = 5.2;
+        heightRatio = 1.6;
       } else if (wish.size === 'small') {
-        widthRatio = 3.3 * scaleFactor;
-        heightRatio = 1.35 * scaleFactor;
-        mass = 1.5;
+        widthRatio = 3.3;
+        heightRatio = 1.35;
       }
 
-      const depth = 0.55 * scaleFactor;
+      const depth = 0.5;
       const radius = heightRatio / 2;
-      const straightW = Math.max(0.1, widthRatio - 2 * radius);
 
       const shape = new THREE.Shape();
       const hw = widthRatio / 2;
@@ -796,14 +723,14 @@
         bevelEnabled: true,
         bevelSegments: 3,
         steps: 1,
-        bevelSize: 0.08 * scaleFactor,
-        bevelThickness: 0.08 * scaleFactor
+        bevelSize: 0.08,
+        bevelThickness: 0.08
       };
 
       const geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings);
       geometry.center();
 
-      const texture = createPillTexture(wish.text, wish.bg, 600, 190);
+      const texture = createPillTexture(wish.text, wish.bg, 600, 180);
 
       const sideMat = new THREE.MeshStandardMaterial({
         color: new THREE.Color(wish.bg[0]),
@@ -817,341 +744,190 @@
         metalness: 0.05
       });
 
-      const materials = [faceMat, sideMat];
-      const mesh = new THREE.Mesh(geometry, materials);
-      mesh.castShadow = true;
-      mesh.receiveShadow = true;
-
-      // Physics Body
-      const body = new CANNON.Body({ mass: mass, material: defaultMaterial });
-      const mainBox = new CANNON.Box(new CANNON.Vec3(straightW / 2, hh, depth / 2));
-      body.addShape(mainBox);
-
-      const capSphere = new CANNON.Sphere(r);
-      body.addShape(capSphere, new CANNON.Vec3(straightW / 2, 0, 0));
-      body.addShape(capSphere, new CANNON.Vec3(-straightW / 2, 0, 0));
-
-      body.position.set(spawnX, spawnY, (Math.random() - 0.5) * 2);
-      body.quaternion.setFromEuler(
-        (Math.random() - 0.5) * 0.4,
-        (Math.random() - 0.5) * 0.4,
-        (Math.random() - 0.5) * 0.8
-      );
-
-      body.angularVelocity.set(
-        (Math.random() - 0.5) * 3,
-        (Math.random() - 0.5) * 3,
-        (Math.random() - 0.5) * 5
-      );
-
-      body.addEventListener('collide', (e) => {
-        if (Math.abs(e.contact.getImpactVelocityAlongNormal()) > 5.0) {
-          playPopSound();
-        }
-      });
+      const mesh = new THREE.Mesh(geometry, [faceMat, sideMat]);
+      mesh.position.set(startX, startY, startZ);
 
       scene.add(mesh);
-      world.addBody(body);
 
-      const item = { mesh, body, wish };
-      items.push(item);
+      const item = {
+        mesh,
+        speed: speed,
+        rotSpeedX: (Math.random() - 0.5) * 0.015,
+        rotSpeedY: (Math.random() - 0.5) * 0.02,
+        rotSpeedZ: (Math.random() - 0.5) * 0.01,
+        initialY: 28,
+        resetY: -26,
+        type: 'pill'
+      };
+      fallingItems.push(item);
       return item;
     }
 
     // 3D Gift Box 🎁
-    function createGiftBox(spawnX = 0, spawnY = 15) {
-      const isMobile = window.innerWidth < 600;
-      const size = (isMobile ? 1.4 : 1.7);
+    function createGiftMesh(startX, startY, startZ, speed) {
+      const size = 1.6;
       const geometry = new THREE.BoxGeometry(size, size, size);
-
       const colors = [0xff416c, 0xb224ef, 0x11998e, 0xf7971e];
       const boxColor = colors[Math.floor(Math.random() * colors.length)];
 
-      const boxMat = new THREE.MeshStandardMaterial({
-        color: boxColor,
-        roughness: 0.25,
-        metalness: 0.1
-      });
-      const ribbonMat = new THREE.MeshStandardMaterial({
-        color: 0xffd166,
-        roughness: 0.2,
-        metalness: 0.4
-      });
+      const boxMat = new THREE.MeshStandardMaterial({ color: boxColor, roughness: 0.25, metalness: 0.1 });
+      const ribbonMat = new THREE.MeshStandardMaterial({ color: 0xffd166, roughness: 0.2, metalness: 0.4 });
 
       const mesh = new THREE.Mesh(geometry, boxMat);
       const rH = new THREE.Mesh(new THREE.BoxGeometry(size + 0.04, 0.32, size + 0.04), ribbonMat);
       const rV = new THREE.Mesh(new THREE.BoxGeometry(0.32, size + 0.04, size + 0.04), ribbonMat);
       mesh.add(rH);
       mesh.add(rV);
-      mesh.castShadow = true;
 
-      const body = new CANNON.Body({ mass: 2.2, material: defaultMaterial });
-      body.addShape(new CANNON.Box(new CANNON.Vec3(size / 2, size / 2, size / 2)));
-      body.position.set(spawnX, spawnY, (Math.random() - 0.5) * 2);
-      body.angularVelocity.set(
-        (Math.random() - 0.5) * 4,
-        (Math.random() - 0.5) * 4,
-        (Math.random() - 0.5) * 4
-      );
-
-      body.addEventListener('collide', (e) => {
-        if (Math.abs(e.contact.getImpactVelocityAlongNormal()) > 5.0) playPopSound();
-      });
-
+      mesh.position.set(startX, startY, startZ);
       scene.add(mesh);
-      world.addBody(body);
-      items.push({ mesh, body, type: 'gift' });
+
+      const item = {
+        mesh,
+        speed: speed,
+        rotSpeedX: (Math.random() - 0.5) * 0.03,
+        rotSpeedY: (Math.random() - 0.5) * 0.03,
+        rotSpeedZ: (Math.random() - 0.5) * 0.03,
+        initialY: 28,
+        resetY: -26,
+        type: 'gift'
+      };
+      fallingItems.push(item);
+      return item;
     }
 
     // 3D Birthday Cake 🎂
-    function createBirthdayCake(spawnX = 0, spawnY = 16) {
+    function createCakeMesh(startX, startY, startZ, speed) {
       const group = new THREE.Group();
-      
-      // Bottom layer
+
       const bGeo = new THREE.CylinderGeometry(1.2, 1.2, 0.7, 24);
       const bMat = new THREE.MeshStandardMaterial({ color: 0xffe3e3, roughness: 0.3 });
       const bMesh = new THREE.Mesh(bGeo, bMat);
       bMesh.position.y = -0.35;
       group.add(bMesh);
 
-      // Top layer
       const tGeo = new THREE.CylinderGeometry(0.85, 0.85, 0.6, 24);
       const tMat = new THREE.MeshStandardMaterial({ color: 0xff758c, roughness: 0.3 });
       const tMesh = new THREE.Mesh(tGeo, tMat);
       tMesh.position.y = 0.3;
       group.add(tMesh);
 
-      // Candle
       const cGeo = new THREE.CylinderGeometry(0.08, 0.08, 0.5, 12);
       const cMat = new THREE.MeshStandardMaterial({ color: 0xffd166, roughness: 0.2 });
       const cMesh = new THREE.Mesh(cGeo, cMat);
       cMesh.position.y = 0.85;
       group.add(cMesh);
 
-      // Flame
       const fGeo = new THREE.SphereGeometry(0.12, 12, 12);
       const fMat = new THREE.MeshBasicMaterial({ color: 0xff4b2b });
       const fMesh = new THREE.Mesh(fGeo, fMat);
       fMesh.position.y = 1.15;
       group.add(fMesh);
 
-      group.castShadow = true;
-
-      const body = new CANNON.Body({ mass: 2.5, material: defaultMaterial });
-      body.addShape(new CANNON.Cylinder(1.2, 1.2, 1.4, 16));
-      body.position.set(spawnX, spawnY, (Math.random() - 0.5) * 2);
-      body.angularVelocity.set((Math.random() - 0.5) * 3, (Math.random() - 0.5) * 3, (Math.random() - 0.5) * 3);
-
+      group.position.set(startX, startY, startZ);
       scene.add(group);
-      world.addBody(body);
-      items.push({ mesh: group, body, type: 'cake' });
+
+      const item = {
+        mesh: group,
+        speed: speed,
+        rotSpeedX: 0,
+        rotSpeedY: 0.015,
+        rotSpeedZ: 0,
+        initialY: 28,
+        resetY: -26,
+        type: 'cake'
+      };
+      fallingItems.push(item);
+      return item;
     }
 
     /* =========================================================================
-       5. DRAG & THROW INTERACTION
+       6. POPULATE THE FALLING WATERFALL STREAM
+       ========================================================================= */
+    function initWaterfall() {
+      const totalWishes = 24;
+      const isMobile = window.innerWidth < 600;
+      const spreadX = isMobile ? 12 : 24;
+      const spreadZ = isMobile ? 14 : 20;
+
+      for (let i = 0; i < totalWishes; i++) {
+        const wish = WISHES[i % WISHES.length];
+        const x = (Math.random() - 0.5) * spreadX;
+        const y = -20 + Math.random() * 50; // Staggered heights
+        const z = (Math.random() - 0.5) * spreadZ;
+        const speed = 0.05 + Math.random() * 0.06;
+
+        createPillMesh(wish, x, y, z, speed);
+
+        // Mix in gifts and cakes
+        if (i % 5 === 0) {
+          createGiftMesh(
+            (Math.random() - 0.5) * spreadX,
+            -20 + Math.random() * 50,
+            (Math.random() - 0.5) * spreadZ,
+            0.05 + Math.random() * 0.05
+          );
+        }
+        if (i % 10 === 0) {
+          createCakeMesh(
+            (Math.random() - 0.5) * spreadX,
+            -20 + Math.random() * 50,
+            (Math.random() - 0.5) * spreadZ,
+            0.04 + Math.random() * 0.04
+          );
+        }
+      }
+    }
+    initWaterfall();
+
+    /* =========================================================================
+       7. RAYCASTER CLICK / TAP INTERACTION
        ========================================================================= */
     const raycaster = new THREE.Raycaster();
     const mouse = new THREE.Vector2();
-    let isDragging = false;
-    let selectedBody = null;
-    let dragPlane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
-    let planeIntersect = new THREE.Vector3();
-    let dragOffset = new THREE.Vector3();
-    let prevMousePos = new THREE.Vector3();
-    let mouseVelocity = new THREE.Vector3();
 
-    function getPointerPos(e) {
-      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-      return {
-        x: (clientX / window.innerWidth) * 2 - 1,
-        y: -(clientY / window.innerHeight) * 2 + 1,
-        rawX: clientX,
-        rawY: clientY
-      };
+    function triggerConfettiAt(x, y) {
+      confetti({
+        particleCount: 25,
+        spread: 60,
+        origin: { x: x / window.innerWidth, y: y / window.innerHeight }
+      });
     }
 
     function onPointerDown(e) {
-      const pos = getPointerPos(e);
-      mouse.x = pos.x;
-      mouse.y = pos.y;
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+      mouse.x = (clientX / window.innerWidth) * 2 - 1;
+      mouse.y = -(clientY / window.innerHeight) * 2 + 1;
 
       raycaster.setFromCamera(mouse, camera);
-      const meshes = items.map(item => item.mesh);
+      const meshes = fallingItems.map(item => item.mesh);
       const intersects = raycaster.intersectObjects(meshes, true);
 
       if (intersects.length > 0) {
-        let hitMesh = intersects[0].object;
-        while (hitMesh.parent && hitMesh.parent !== scene) {
-          hitMesh = hitMesh.parent;
+        let hitObj = intersects[0].object;
+        while (hitObj.parent && hitObj.parent !== scene) {
+          hitObj = hitObj.parent;
         }
 
-        const found = items.find(item => item.mesh === hitMesh);
+        const found = fallingItems.find(item => item.mesh === hitObj);
         if (found) {
-          isDragging = true;
-          selectedBody = found.body;
-          selectedBody.wakeUp();
-
-          dragPlane.constant = -selectedBody.position.z;
-          raycaster.ray.intersectPlane(dragPlane, planeIntersect);
-          dragOffset.copy(planeIntersect).sub(
-            new THREE.Vector3(selectedBody.position.x, selectedBody.position.y, selectedBody.position.z)
-          );
-
-          prevMousePos.copy(planeIntersect);
-          mouseVelocity.set(0, 0, 0);
-
+          // Bounce up & spin
+          found.mesh.position.y += 2.5;
+          found.rotSpeedY += 0.15;
           playPopSound();
-          confetti({
-            particleCount: 16,
-            spread: 50,
-            origin: {
-              x: pos.rawX / window.innerWidth,
-              y: pos.rawY / window.innerHeight
-            }
-          });
+          triggerConfettiAt(clientX, clientY);
         }
       }
     }
 
-    function onPointerMove(e) {
-      if (!isDragging || !selectedBody) return;
-      const pos = getPointerPos(e);
-      mouse.x = pos.x;
-      mouse.y = pos.y;
-
-      raycaster.setFromCamera(mouse, camera);
-      if (raycaster.ray.intersectPlane(dragPlane, planeIntersect)) {
-        const targetPos = planeIntersect.clone().sub(dragOffset);
-        
-        mouseVelocity.copy(planeIntersect).sub(prevMousePos).multiplyScalar(35);
-        prevMousePos.copy(planeIntersect);
-
-        selectedBody.velocity.set(
-          (targetPos.x - selectedBody.position.x) * 22,
-          (targetPos.y - selectedBody.position.y) * 22,
-          (targetPos.z - selectedBody.position.z) * 15
-        );
-        selectedBody.wakeUp();
-      }
-    }
-
-    function onPointerUp() {
-      if (isDragging && selectedBody) {
-        selectedBody.velocity.set(
-          mouseVelocity.x * 0.85,
-          mouseVelocity.y * 0.85,
-          (Math.random() - 0.5) * 5
-        );
-        selectedBody.angularVelocity.set(
-          (Math.random() - 0.5) * 10,
-          (Math.random() - 0.5) * 10,
-          (Math.random() - 0.5) * 10
-        );
-      }
-      isDragging = false;
-      selectedBody = null;
-    }
-
-    window.addEventListener('mousedown', onPointerDown);
-    window.addEventListener('mousemove', onPointerMove);
-    window.addEventListener('mouseup', onPointerUp);
-
-    window.addEventListener('touchstart', onPointerDown, { passive: false });
-    window.addEventListener('touchmove', onPointerMove, { passive: false });
-    window.addEventListener('touchend', onPointerUp);
+    window.addEventListener('pointerdown', onPointerDown);
 
     /* =========================================================================
-       6. LIFECYCLE & AUTO-SPAWN (VÀO PHÁT LÀ RƠI LUÔN!)
-       ========================================================================= */
-    let wishIndex = 0;
-
-    function dropNextWish() {
-      const wish = WISHES[wishIndex % WISHES.length];
-      const spawnX = (Math.random() - 0.5) * 5.5;
-      const spawnY = 12 + Math.random() * 4;
-      createPillMeshAndBody(wish, spawnX, spawnY);
-      wishIndex++;
-    }
-
-    function dropGift() {
-      const spawnX = (Math.random() - 0.5) * 5;
-      createGiftBox(spawnX, 13 + Math.random() * 3);
-    }
-
-    function dropCake() {
-      const spawnX = (Math.random() - 0.5) * 4;
-      createBirthdayCake(spawnX, 15);
-    }
-
-    function triggerBigConfetti() {
-      confetti({
-        particleCount: 80,
-        spread: 75,
-        origin: { y: 0.65 }
-      });
-      setTimeout(() => {
-        confetti({
-          particleCount: 50,
-          angle: 60,
-          spread: 55,
-          origin: { x: 0 }
-        });
-        confetti({
-          particleCount: 50,
-          angle: 120,
-          spread: 55,
-          origin: { x: 1 }
-        });
-      }, 200);
-    }
-
-    function shakeAll() {
-      items.forEach(item => {
-        item.body.wakeUp();
-        item.body.velocity.set(
-          (Math.random() - 0.5) * 22,
-          18 + Math.random() * 14,
-          (Math.random() - 0.5) * 12
-        );
-        item.body.angularVelocity.set(
-          (Math.random() - 0.5) * 15,
-          (Math.random() - 0.5) * 15,
-          (Math.random() - 0.5) * 15
-        );
-      });
-      triggerBigConfetti();
-    }
-
-    // AUTO-START ON PAGE LOAD (Không cần bấm nút nào cả!)
-    function startInstantly() {
-      // 1. Drop wishes & gifts sequentially
-      for (let i = 0; i < 9; i++) {
-        setTimeout(() => {
-          dropNextWish();
-          if (i === 1 || i === 6) dropGift();
-          if (i === 4) dropCake();
-        }, i * 220);
-      }
-
-      // 2. Confetti explosion
-      triggerBigConfetti();
-
-      // 3. Try autoplay music immediately
-      tryPlayMusic();
-    }
-
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', startInstantly);
-    } else {
-      startInstantly();
-    }
-
-    /* =========================================================================
-       7. UI BUTTONS & CONTROLS
+       8. CONTROLS & MODALS
        ========================================================================= */
     const addBtn = document.getElementById('add-btn');
-    const shakeBtn = document.getElementById('shake-btn');
     const confettiBtn = document.getElementById('confetti-btn');
     const themeBtn = document.getElementById('theme-btn');
     const qrBtn = document.getElementById('qr-btn');
@@ -1160,13 +936,38 @@
     const copyLinkBtn = document.getElementById('copy-link-btn');
     const shareLinkInput = document.getElementById('share-link-input');
 
+    function triggerBigConfetti() {
+      confetti({
+        particleCount: 100,
+        spread: 80,
+        origin: { y: 0.6 }
+      });
+      setTimeout(() => {
+        confetti({ particleCount: 60, angle: 60, spread: 60, origin: { x: 0 } });
+        confetti({ particleCount: 60, angle: 120, spread: 60, origin: { x: 1 } });
+      }, 250);
+    }
+
     addBtn.addEventListener('click', () => {
-      dropNextWish();
-      if (Math.random() > 0.5) dropGift();
-      if (Math.random() > 0.8) dropCake();
+      const isMobile = window.innerWidth < 600;
+      const spreadX = isMobile ? 12 : 24;
+      const spreadZ = isMobile ? 14 : 20;
+
+      for (let i = 0; i < 4; i++) {
+        const wish = WISHES[Math.floor(Math.random() * WISHES.length)];
+        createPillMesh(
+          wish,
+          (Math.random() - 0.5) * spreadX,
+          26 + Math.random() * 8,
+          (Math.random() - 0.5) * spreadZ,
+          0.06 + Math.random() * 0.06
+        );
+      }
+      createGiftMesh((Math.random() - 0.5) * spreadX, 28, (Math.random() - 0.5) * spreadZ, 0.06);
+      triggerBigConfetti();
+      playPopSound();
     });
 
-    shakeBtn.addEventListener('click', shakeAll);
     confettiBtn.addEventListener('click', triggerBigConfetti);
 
     themeBtn.addEventListener('click', () => {
@@ -1174,7 +975,7 @@
       document.getElementById('bg-gradient').style.background = THEMES[currentThemeIdx].bg;
     });
 
-    // QR Code Modal Generator
+    // QR Code
     function generateQR() {
       const url = window.location.href;
       shareLinkInput.value = url;
@@ -1208,34 +1009,46 @@
       });
     });
 
-    // Device Tilt Gravity on Mobile
-    if (window.DeviceOrientationEvent) {
-      window.addEventListener('deviceorientation', (e) => {
-        if (e.gamma !== null && e.beta !== null) {
-          const gx = Math.min(Math.max(e.gamma / 2.8, -15), 15);
-          const gy = Math.min(Math.max(-e.beta / 2.8, -35), -12);
-          world.gravity.set(gx, gy, 0);
-        }
-      });
-    }
+    // Auto-try music on page load
+    window.addEventListener('load', () => {
+      tryPlayMusic();
+      triggerBigConfetti();
+    });
 
     /* =========================================================================
-       8. ANIMATION LOOP & RESIZE
+       9. ANIMATION LOOP & RESIZE
        ========================================================================= */
-    const clock = new THREE.Clock();
-    const fixedTimeStep = 1 / 60;
-
     function animate() {
       requestAnimationFrame(animate);
 
-      const delta = Math.min(clock.getDelta(), 0.1);
-      world.step(fixedTimeStep, delta, 3);
+      controls.update();
 
-      for (let i = 0; i < items.length; i++) {
-        const item = items[i];
-        item.mesh.position.copy(item.body.position);
-        item.mesh.quaternion.copy(item.body.quaternion);
+      // Animate falling items (Infinite Waterfall Loop)
+      const isMobile = window.innerWidth < 600;
+      const spreadX = isMobile ? 12 : 24;
+      const spreadZ = isMobile ? 14 : 20;
+
+      for (let i = 0; i < fallingItems.length; i++) {
+        const item = fallingItems[i];
+        item.mesh.position.y -= item.speed;
+
+        item.mesh.rotation.x += item.rotSpeedX;
+        item.mesh.rotation.y += item.rotSpeedY;
+        item.mesh.rotation.z += item.rotSpeedZ;
+
+        // Dampen excess spin
+        if (Math.abs(item.rotSpeedY) > 0.04) item.rotSpeedY *= 0.98;
+
+        // Reset to top when passing bottom threshold
+        if (item.mesh.position.y < item.resetY) {
+          item.mesh.position.y = item.initialY + Math.random() * 6;
+          item.mesh.position.x = (Math.random() - 0.5) * spreadX;
+          item.mesh.position.z = (Math.random() - 0.5) * spreadZ;
+        }
       }
+
+      // Rotate particle stars slowly
+      particles.rotation.y += 0.0008;
 
       renderer.render(scene, camera);
     }
@@ -1247,7 +1060,6 @@
       camera.aspect = width / height;
       camera.updateProjectionMatrix();
       renderer.setSize(width, height);
-      updateBoundaries();
     });
   </script>
 </body>
