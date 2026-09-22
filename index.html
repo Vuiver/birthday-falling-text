@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>🎉 Chúc Mừng Sinh Nhật - 100 Lời Chúc 3D Thác Nước 🎂</title>
-  <meta name="description" content="Thác nước 100 lời chúc sinh nhật 3D rơi liên tục không ngừng, quà cáp, bánh kem và âm nhạc rộn ràng.">
+  <title>🎉 Chúc Mừng Sinh Nhật - 100 Lời Chúc 3D Rực Rỡ 🎂</title>
+  <meta name="description" content="Cơn mưa 100 lời chúc sinh nhật 3D phát sáng rực rỡ, âm nhạc và quà cáp rơi tự do độc đáo.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700;800;900&family=Mali:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@700;800;900&family=Mali:wght@700&display=swap" rel="stylesheet">
   <!-- Three.js & Controls & Confetti -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
@@ -29,7 +29,7 @@
       height: 100%;
       overflow: hidden;
       font-family: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #0d0618;
+      background: #0b0514;
       color: #fff;
     }
 
@@ -46,24 +46,23 @@
     .bg-gradient {
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at 50% 30%, #2a0f47 0%, #130722 55%, #07020d 100%);
+      background: radial-gradient(circle at 50% 30%, #260c40 0%, #120520 55%, #06020c 100%);
       z-index: 0;
       transition: background 0.8s ease;
     }
 
-    /* Glowing orbs */
     .orb {
       position: absolute;
       border-radius: 50%;
-      filter: blur(50px);
-      opacity: 0.38;
+      filter: blur(55px);
+      opacity: 0.4;
       pointer-events: none;
       z-index: 0;
       animation: floatOrb 10s infinite alternate ease-in-out;
     }
-    .orb-1 { width: 350px; height: 350px; background: #ff416c; top: 5%; left: 5%; }
-    .orb-2 { width: 300px; height: 300px; background: #ffd166; bottom: 15%; right: 10%; animation-delay: -3s; }
-    .orb-3 { width: 250px; height: 250px; background: #b224ef; top: 40%; right: 30%; animation-delay: -6s; }
+    .orb-1 { width: 360px; height: 360px; background: #ff416c; top: 5%; left: 5%; }
+    .orb-2 { width: 320px; height: 320px; background: #ffd166; bottom: 15%; right: 10%; animation-delay: -3s; }
+    .orb-3 { width: 280px; height: 280px; background: #b224ef; top: 40%; right: 30%; animation-delay: -6s; }
 
     @keyframes floatOrb {
       0% { transform: translate(0, 0) scale(1); }
@@ -168,11 +167,12 @@
       margin-top: 6px;
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      background: rgba(0, 0, 0, 0.5);
-      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(0, 0, 0, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 20px;
-      padding: 5px 14px;
-      font-size: 0.78rem;
+      padding: 6px 16px;
+      font-size: 0.8rem;
+      font-weight: 700;
       color: #ffd166;
       display: flex;
       align-items: center;
@@ -240,7 +240,7 @@
       bottom: 70px;
       left: 50%;
       transform: translateX(-50%);
-      background: rgba(255, 65, 108, 0.9);
+      background: rgba(255, 65, 108, 0.92);
       backdrop-filter: blur(10px);
       padding: 7px 18px;
       border-radius: 20px;
@@ -399,7 +399,7 @@
 
     <!-- Live Counter Pill -->
     <div class="hint-pill">
-      <span>✨</span> Thác nước 100 Lời Chúc đang rơi liên tục • Vuốt để xoay 360°
+      <span>✨</span> 100 Lời Chúc Rực Rỡ Đang Rơi • Chạm để nổ pháo hoa!
     </div>
 
     <!-- Tap anywhere for music prompt -->
@@ -558,16 +558,14 @@
       "Happy Birthday - Vạn Dặm Bình An! 🌈"
     ];
 
-    // Build 100 wishes dataset
     const ALL_100_WISHES = WISH_TEXTS.map((text, idx) => ({
       id: idx + 1,
       text: text,
-      bg: PALETTES[idx % PALETTES.length],
-      size: text.length > 25 ? 'large' : (text.length < 15 ? 'small' : 'medium')
+      bg: PALETTES[idx % PALETTES.length]
     }));
 
     const THEMES = [
-      { name: "Dark Velvet", bg: "radial-gradient(circle at 50% 30%, #2a0f47 0%, #130722 55%, #07020d 100%)" },
+      { name: "Dark Velvet", bg: "radial-gradient(circle at 50% 30%, #260c40 0%, #120520 55%, #06020c 100%)" },
       { name: "Neon Night", bg: "radial-gradient(circle at 50% 30%, #0d1b3e 0%, #050a1b 60%, #000208 100%)" },
       { name: "Sweet Pink", bg: "radial-gradient(circle at 50% 30%, #4a1334 0%, #250618 60%, #0d0107 100%)" },
       { name: "Golden Royal", bg: "radial-gradient(circle at 50% 30%, #3d2b0f 0%, #1e1403 60%, #0a0600 100%)" }
@@ -735,71 +733,85 @@
     scene.add(particles);
 
     /* =========================================================================
-       5. 3D TEXTURE & MESH GENERATORS
+       5. HIGH-VISIBILITY 3D TEXT SPRITES & GIFTS GENERATION
        ========================================================================= */
     const textureCache = new Map();
 
+    // Generate high-resolution crystal-clear canvas badge
     function getPillTexture(wish) {
       if (textureCache.has(wish.text)) {
         return textureCache.get(wish.text);
       }
 
-      const w = 620;
-      const h = 180;
       const canvas = document.createElement('canvas');
-      canvas.width = w;
-      canvas.height = h;
+      canvas.width = 768;
+      canvas.height = 200;
       const ctx = canvas.getContext('2d');
-      const r = h / 2;
+      const w = 768;
+      const h = 200;
+      const r = 90; // Pill corner radius
 
-      // Gradient
-      const grad = ctx.createLinearGradient(0, 0, w, h);
+      // Shadow / Outer Glow
+      ctx.shadowColor = wish.bg[0];
+      ctx.shadowBlur = 25;
+      ctx.shadowOffsetX = 0;
+      ctx.shadowOffsetY = 4;
+
+      // Background Gradient
+      const grad = ctx.createLinearGradient(30, 20, w - 30, h - 20);
       grad.addColorStop(0, wish.bg[0]);
       grad.addColorStop(1, wish.bg[1]);
 
       ctx.beginPath();
-      ctx.moveTo(r, 0);
-      ctx.lineTo(w - r, 0);
-      ctx.arcTo(w, 0, w, h, r);
-      ctx.lineTo(w, h - r);
-      ctx.arcTo(w, h, w - r, h, r);
-      ctx.lineTo(r, h);
-      ctx.arcTo(0, h, 0, h - r, r);
-      ctx.lineTo(0, r);
-      ctx.arcTo(0, 0, r, 0, r);
+      ctx.moveTo(30 + r, 20);
+      ctx.lineTo(w - 30 - r, 20);
+      ctx.arcTo(w - 30, 20, w - 30, h - 20, r);
+      ctx.lineTo(w - 30, h - 20 - r);
+      ctx.arcTo(w - 30, h - 20, 30, h - 20, r);
+      ctx.lineTo(30 + r, h - 20);
+      ctx.arcTo(30, h - 20, 30, 20, r);
+      ctx.lineTo(30, 20 + r);
+      ctx.arcTo(30, 20, w - 30, 20, r);
       ctx.closePath();
 
       ctx.fillStyle = grad;
       ctx.fill();
 
-      // Rim 3D
-      ctx.lineWidth = 7;
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.45)';
+      // Reset shadow for crisp border & text
+      ctx.shadowBlur = 0;
+
+      // White 3D Rim / Border
+      ctx.lineWidth = 8;
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.75)';
       ctx.stroke();
 
-      // Gloss
+      // Top Glass Highlight
       ctx.save();
       ctx.clip();
-      const gloss = ctx.createLinearGradient(0, 0, 0, h * 0.45);
-      gloss.addColorStop(0, 'rgba(255, 255, 255, 0.4)');
+      const gloss = ctx.createLinearGradient(0, 20, 0, h * 0.5);
+      gloss.addColorStop(0, 'rgba(255, 255, 255, 0.55)');
       gloss.addColorStop(1, 'rgba(255, 255, 255, 0)');
       ctx.fillStyle = gloss;
-      ctx.fillRect(0, 0, w, h * 0.45);
+      ctx.fillRect(30, 20, w - 60, h * 0.5);
       ctx.restore();
 
-      // Dynamic Font Size based on text length
+      // Draw Bold Text (Clean, Large, Crisp with Drop Shadow)
       const len = wish.text.length;
-      let fontSize = 37;
-      if (len > 35) fontSize = 28;
-      else if (len > 25) fontSize = 32;
+      let fontSize = 44;
+      if (len > 34) fontSize = 32;
+      else if (len > 24) fontSize = 38;
 
-      ctx.fillStyle = '#ffffff';
       ctx.font = `900 ${fontSize}px "Be Vietnam Pro", sans-serif`;
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      ctx.shadowColor = 'rgba(0, 0, 0, 0.38)';
-      ctx.shadowBlur = 10;
+
+      // Text Shadow for contrast
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.65)';
+      ctx.shadowBlur = 12;
+      ctx.shadowOffsetX = 0;
       ctx.shadowOffsetY = 4;
+
+      ctx.fillStyle = '#ffffff';
       ctx.fillText(wish.text, w / 2, h / 2);
 
       const texture = new THREE.CanvasTexture(canvas);
@@ -809,75 +821,32 @@
       return texture;
     }
 
-    // Geometries reuse pool
-    function createPillGeometry(wish) {
-      let widthRatio = 4.4;
-      let heightRatio = 1.45;
-      if (wish.size === 'large') {
-        widthRatio = 5.4;
-        heightRatio = 1.55;
-      } else if (wish.size === 'small') {
-        widthRatio = 3.4;
-        heightRatio = 1.35;
-      }
-
-      const depth = 0.5;
-      const radius = heightRatio / 2;
-      const hw = widthRatio / 2;
-      const hh = heightRatio / 2;
-      const r = hh;
-
-      const shape = new THREE.Shape();
-      shape.moveTo(-hw + r, -hh);
-      shape.lineTo(hw - r, -hh);
-      shape.absarc(hw - r, 0, r, -Math.PI / 2, Math.PI / 2, false);
-      shape.lineTo(-hw + r, hh);
-      shape.absarc(-hw + r, 0, r, Math.PI / 2, (3 * Math.PI) / 2, false);
-
-      const extrudeSettings = {
-        depth: depth,
-        bevelEnabled: true,
-        bevelSegments: 2,
-        steps: 1,
-        bevelSize: 0.08,
-        bevelThickness: 0.08
-      };
-
-      const geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings);
-      geometry.center();
-      return geometry;
-    }
-
     const fallingItems = [];
     let speedMultiplier = 1.0;
 
-    function createPillMesh(wish, startX, startY, startZ, speed) {
-      const geometry = createPillGeometry(wish);
+    // Create 3D Sprite Pill (Always visible, crystal-clear from any angle)
+    function createPillSprite(wish, startX, startY, startZ, speed) {
       const texture = getPillTexture(wish);
-
-      const sideMat = new THREE.MeshStandardMaterial({
-        color: new THREE.Color(wish.bg[0]),
-        roughness: 0.28,
-        metalness: 0.1
-      });
-
-      const faceMat = new THREE.MeshStandardMaterial({
+      const spriteMat = new THREE.SpriteMaterial({
         map: texture,
-        roughness: 0.24,
-        metalness: 0.05
+        transparent: true,
+        depthWrite: false
       });
 
-      const mesh = new THREE.Mesh(geometry, [faceMat, sideMat]);
-      mesh.position.set(startX, startY, startZ);
-      scene.add(mesh);
+      const sprite = new THREE.Sprite(spriteMat);
+      // Scale sprite based on aspect ratio (768:200 = 3.84:1)
+      const isMobile = window.innerWidth < 600;
+      const baseWidth = isMobile ? 6.8 : 8.2;
+      const baseHeight = baseWidth / 3.84;
+      sprite.scale.set(baseWidth, baseHeight, 1);
+      sprite.position.set(startX, startY, startZ);
+
+      scene.add(sprite);
 
       const item = {
-        mesh,
+        mesh: sprite,
         wish,
         baseSpeed: speed,
-        rotSpeedX: (Math.random() - 0.5) * 0.015,
-        rotSpeedY: (Math.random() - 0.5) * 0.02,
-        rotSpeedZ: (Math.random() - 0.5) * 0.01,
         initialY: 34,
         resetY: -32,
         type: 'pill'
@@ -976,22 +945,20 @@
     }
 
     function initThickWaterfall() {
-      // Create initial thick shower of 55 active items
       const initialCount = 55;
       const isMobile = window.innerWidth < 600;
       const spreadX = isMobile ? 14 : 28;
-      const spreadZ = isMobile ? 16 : 24;
+      const spreadZ = isMobile ? 14 : 22;
 
       for (let i = 0; i < initialCount; i++) {
         const wish = getNextWish();
         const x = (Math.random() - 0.5) * spreadX;
-        const y = -28 + (i / initialCount) * 62; // Evenly distributed from bottom to top
+        const y = -28 + (i / initialCount) * 62;
         const z = (Math.random() - 0.5) * spreadZ;
         const speed = 0.06 + Math.random() * 0.07;
 
-        createPillMesh(wish, x, y, z, speed);
+        createPillSprite(wish, x, y, z, speed);
 
-        // Mix in gifts and cakes
         if (i % 6 === 0) {
           createGiftMesh(
             (Math.random() - 0.5) * spreadX,
@@ -1046,7 +1013,7 @@
         const found = fallingItems.find(item => item.mesh === hitObj);
         if (found) {
           found.mesh.position.y += 3.0;
-          found.rotSpeedY += 0.2;
+          if (found.rotSpeedY !== undefined) found.rotSpeedY += 0.2;
           playPopSound();
           triggerConfettiAt(clientX, clientY);
         }
@@ -1079,7 +1046,6 @@
       }, 250);
     }
 
-    // Toggle Speed (Normal -> Fast -> Turbo)
     speedBtn.addEventListener('click', () => {
       if (speedMultiplier === 1.0) {
         speedMultiplier = 1.8;
@@ -1097,11 +1063,11 @@
     addBtn.addEventListener('click', () => {
       const isMobile = window.innerWidth < 600;
       const spreadX = isMobile ? 14 : 28;
-      const spreadZ = isMobile ? 16 : 24;
+      const spreadZ = isMobile ? 14 : 22;
 
       for (let i = 0; i < 6; i++) {
         const wish = getNextWish();
-        createPillMesh(
+        createPillSprite(
           wish,
           (Math.random() - 0.5) * spreadX,
           32 + Math.random() * 8,
@@ -1161,7 +1127,7 @@
     });
 
     /* =========================================================================
-       9. CONTINUOUS WATERFALL ANIMATION LOOP (INFINITE ROTATING 100 WISHES)
+       9. CONTINUOUS WATERFALL ANIMATION LOOP (INFINITE 100 WISHES)
        ========================================================================= */
     function animate() {
       requestAnimationFrame(animate);
@@ -1170,17 +1136,18 @@
 
       const isMobile = window.innerWidth < 600;
       const spreadX = isMobile ? 14 : 28;
-      const spreadZ = isMobile ? 16 : 24;
+      const spreadZ = isMobile ? 14 : 22;
 
       for (let i = 0; i < fallingItems.length; i++) {
         const item = fallingItems[i];
         item.mesh.position.y -= item.baseSpeed * speedMultiplier;
 
-        item.mesh.rotation.x += item.rotSpeedX;
-        item.mesh.rotation.y += item.rotSpeedY;
-        item.mesh.rotation.z += item.rotSpeedZ;
-
-        if (Math.abs(item.rotSpeedY) > 0.04) item.rotSpeedY *= 0.98;
+        if (item.rotSpeedX !== undefined) {
+          item.mesh.rotation.x += item.rotSpeedX;
+          item.mesh.rotation.y += item.rotSpeedY;
+          item.mesh.rotation.z += item.rotSpeedZ;
+          if (Math.abs(item.rotSpeedY) > 0.04) item.rotSpeedY *= 0.98;
+        }
 
         // Reset to top when passing bottom threshold, update to NEXT wish in the 100 wishes list!
         if (item.mesh.position.y < item.resetY) {
@@ -1188,18 +1155,12 @@
           item.mesh.position.x = (Math.random() - 0.5) * spreadX;
           item.mesh.position.z = (Math.random() - 0.5) * spreadZ;
 
-          // If it's a pill, cycle to the next wish in the 100 list!
           if (item.type === 'pill') {
             const nextWish = getNextWish();
             item.wish = nextWish;
             const newTex = getPillTexture(nextWish);
-            if (item.mesh.material && item.mesh.material[0]) {
-              item.mesh.material[0].map = newTex;
-              item.mesh.material[0].needsUpdate = true;
-            }
-            if (item.mesh.material && item.mesh.material[1]) {
-              item.mesh.material[1].color.set(nextWish.bg[0]);
-            }
+            item.mesh.material.map = newTex;
+            item.mesh.material.needsUpdate = true;
           }
         }
       }
